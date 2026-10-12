@@ -108,12 +108,12 @@
         }
 
         .hero h1 {
-            font-size: 1.8rem;
+            font-size: 1.7rem;
             margin-bottom: 5px;
         }
 
         .hero p {
-            font-size: 1rem;
+            font-size: 0.95rem;
             margin-bottom: 15px;
         }
 
@@ -383,7 +383,7 @@
     <header>
         <div class="logo">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3D4852" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M12 2v20"></path></svg>
-            釜山慢活
+            小呆毛們の冒險
         </div>
         <nav>
             <ul>
@@ -436,7 +436,7 @@
 
         <!-- 每日行程 -->
         <section id="itinerary" class="card">
-            <h2 class="section-title">🗓️ 釜山散步行程</h2>
+            <h2 class="section-title">🗓️ 8日慢活行程</h2>
 
             <div class="day-tabs">
                 <button class="day-tab active" onclick="switchDay(1)">Day 1 抵達海雲台</button>
@@ -451,7 +451,7 @@
 
             <!-- Day 1 -->
             <div id="day-1" class="day-content active">
-                <div class="day-header-desc">✨ 主題：初見釜山，入住海雲台聽海浪聲入眠</div>
+                <div class="day-header-desc">✨ 主題：初見釜山，入住飯店聽海浪聲入眠</div>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="time">下午</div>
@@ -467,10 +467,10 @@
                         <div class="time">傍晚</div>
                         <div class="activity-card">
                             <div class="activity-title-row">
-                                <span class="activity-name">入住飯店待定</span>
+                                <span class="activity-name">入住飯店 (待定)</span>
                                 <span class="tag tag-must">必去</span>
                             </div>
-                            <div class="activity-desc">Check-in 稍作休息，打開窗戶就能看見夕陽灑在沙灘上。</div>
+                            <div class="activity-desc">Check-in 稍作休息，準備展開美好的釜山假期。</div>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -680,9 +680,9 @@
         <section id="todo" class="card">
             <h2 class="section-title">🏨 住宿資訊</h2>
             <div class="hotel-info">
-                <p><b>名稱：</b> 釜山海雲台美景飯店 (Haeundae Sea View Hotel)</p>
-                <p><b>地址：</b> 釜山廣域市海雲台區海雲台海邊路 (近 2 號線海雲台站 3 號出口)</p>
-                <p><b>特色：</b> 步行 3 分鐘即達沙灘，房間採光極佳，慢活放鬆首選。</p>
+                <p><b>名稱：</b> 待定 (飯店籌備中)</p>
+                <p><b>地址：</b> 待定</p>
+                <p><b>特色：</b> 舒適放鬆，享受兩個人的美好假期。</p>
             </div>
         </section>
 
@@ -691,7 +691,7 @@
             <ul class="todo-list">
                 <li class="todo-item"><input type="checkbox" onchange="toggleCheck(this)"> <span>護照與有效簽證/入境申報 (確認效期 6 個月以上)</span></li>
                 <li class="todo-item"><input type="checkbox" onchange="toggleCheck(this)"> <span>韓元現金 / T-money 交通卡</span></li>
-                <li class="todo-item"><input type="checkbox" onchange="todoCheck(this)"> <span>網卡 / eSIM 漫遊設定</span></li>
+                <li class="todo-item"><input type="checkbox" onchange="toggleCheck(this)"> <span>網卡 / eSIM 漫遊設定</span></li>
                 <li class="todo-item"><input type="checkbox" onchange="toggleCheck(this)"> <span>轉接插頭 (韓國標準圓形雙孔)</span></li>
                 <li class="todo-item"><input type="checkbox" onchange="toggleCheck(this)"> <span>心情放鬆，準備好好享受慢步調！</span></li>
             </ul>
@@ -701,18 +701,4 @@
     <script>
         function switchDay(dayNum) {
             document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
-            event.target.classList.add('active');
-            document.getElementById(`day-${dayNum}`).classList.add('active');
-        }
-
-        function toggleCheck(checkbox) {
-            if (checkbox.checked) {
-                checkbox.parentElement.classList.add('checked');
-            } else {
-                checkbox.parentElement.classList.remove('checked');
-            }
-        }
-    </script>
-</body>
-</html>
+            document.querySelectorAll('.day-content').forEach(c => c.classList.remove
