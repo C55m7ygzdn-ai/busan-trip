@@ -402,11 +402,11 @@
             <!-- 雙人可愛頭像區塊 -->
             <div class="avatar-container">
                 <div class="avatar-box left">
-                    <img src="avatar1.png.jpg" alt="男生頭像">
+                    <img src="avatar1.png" alt="男生頭像">
                 </div>
                 <div class="heart-icon">✈️</div>
                 <div class="avatar-box right">
-                    <img src="avatar2.png.jpg" alt="女生頭像">
+                    <img src="avatar2.png" alt="女生頭像">
                 </div>
             </div>
 
@@ -701,4 +701,18 @@
     <script>
         function switchDay(dayNum) {
             document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.day-content').forEach(c => c.classList.remove
+            document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(`day-${dayNum}`).classList.add('active');
+        }
+
+        function toggleCheck(checkbox) {
+            if (checkbox.checked) {
+                checkbox.parentElement.classList.add('checked');
+            } else {
+                checkbox.parentElement.classList.remove('checked');
+            }
+        }
+    </script>
+</body>
+</html>
