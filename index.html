@@ -152,7 +152,7 @@
             width: 85px;
             height: 85px;
             border-radius: 50%;
-            background: #FFFFFF;
+            background: #B5D8EB; /* 改成與 Banner 相同的粉藍底色，消除白邊違和感 */
             border: 3px solid var(--line-color);
             box-shadow: 3px 3px 0px var(--line-color);
             overflow: hidden;
@@ -170,9 +170,10 @@
         }
 
         .avatar-box img {
-            width: 100%;
-            height: 100%;
+            width: 110%; /* 稍微放大讓邊緣切齊 */
+            height: 110%;
             object-fit: cover;
+            mix-blend-mode: multiply; /* 自動把圖片的白色背景融合變成透明 */
         }
 
         .heart-icon {
@@ -402,11 +403,11 @@
             <!-- 雙人可愛頭像區塊 -->
             <div class="avatar-container">
                 <div class="avatar-box left">
-                    <img src="avatar1.png.jpg" alt="男生頭像">
+                    <img src="avatar1.png" alt="男生頭像">
                 </div>
                 <div class="heart-icon">✈️</div>
                 <div class="avatar-box right">
-                    <img src="avatar2.png.jpg" alt="女生頭像">
+                    <img src="avatar2.png" alt="女生頭像">
                 </div>
             </div>
 
