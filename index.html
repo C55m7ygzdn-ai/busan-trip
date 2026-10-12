@@ -503,6 +503,7 @@
                 <button class="day-tab" onclick="switchDay(6)">Day 6</button>
                 <button class="day-tab" onclick="switchDay(7)">Day 7</button>
                 <button class="day-tab" onclick="switchDay(8)">Day 8</button>
+                <button class="day-tab" onclick="switchDay(9)">Day 9</button>
             </div>
 
             <!-- Day 1 -->
@@ -754,10 +755,10 @@
                         <div class="time">早上</div>
                         <div class="activity-card">
                             <div class="activity-title-row">
-                                <span class="activity-name">退房並前往金海機場</span>
-                                <span class="tag tag-transport">交通</span>
+                                <span class="activity-name">自由探索或放鬆發呆日</span>
+                                <span class="tag tag-must">隨性</span>
                             </div>
-                            <div class="activity-desc">不要回家。</div>
+                            <div class="activity-desc">享受沒有鬧鐘的早晨，隨心所欲散步。</div>
                         </div>
                     </div>
                 </div>
@@ -773,6 +774,36 @@
                         <textarea id="diary-8-2" placeholder="寫下今天的心情或發生的小趣事..."></textarea>
                     </div>
                     <button class="save-diary-btn" onclick="saveDiary(8)">儲存日記 💾</button>
+                </div>
+            </div>
+
+            <!-- Day 9 -->
+            <div id="day-9" class="day-content">
+                <div class="day-header-desc">✨ Day 9 主題：帶著滿滿回憶賦歸</div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="time">早上</div>
+                        <div class="activity-card">
+                            <div class="activity-title-row">
+                                <span class="activity-name">退房並前往金海機場</span>
+                                <span class="tag tag-transport">交通</span>
+                            </div>
+                            <div class="activity-desc">不要回家，但還是得準備搭機返回溫暖的家。</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="diary-section">
+                    <div class="diary-title">📖 小呆毛每日手札 (Day 9)</div>
+                    <div class="diary-box">
+                        <label>✍️ 小呆毛 1 號的日記：</label>
+                        <textarea id="diary-9-1" placeholder="寫下今天的心情或發生的小趣事..."></textarea>
+                    </div>
+                    <div class="diary-box">
+                        <label>✍️ 小呆毛 2 號的日記：</label>
+                        <textarea id="diary-9-2" placeholder="寫下今天的心情或發生的小趣事..."></textarea>
+                    </div>
+                    <button class="save-diary-btn" onclick="saveDiary(9)">儲存日記 💾</button>
                 </div>
             </div>
         </section>
@@ -817,22 +848,4 @@
 
         // 儲存日記功能
         function saveDiary(dayNum) {
-            const val1 = document.getElementById(`diary-${dayNum}-1`).value;
-            const val2 = document.getElementById(`diary-${dayNum}-2`).value;
-            localStorage.setItem(`busan_diary_${dayNum}_1`, val1);
-            localStorage.setItem(`busan_diary_${dayNum}_2`, val2);
-            alert(`Day ${dayNum} 的小日記已儲存成功！✨`);
-        }
-
-        // 載入時自動讀取已儲存的日記
-        window.onload = function() {
-            for (let i = 1; i <= 8; i++) {
-                const saved1 = localStorage.getItem(`busan_diary_${i}_1`);
-                const saved2 = localStorage.getItem(`busan_diary_${i}_2`);
-                if (saved1) document.getElementById(`diary-${i}-1`).value = saved1;
-                if (saved2) document.getElementById(`diary-${i}-2`).value = saved2;
-            }
-        }
-    </script>
-</body>
-</html>
+            const val1 = document.getElementById(`diary-${day
