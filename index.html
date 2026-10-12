@@ -37,7 +37,7 @@
             padding-bottom: 60px;
         }
 
-        /* 頂端固定選單 */
+        /* 頂端固定選單 - 優化手機排版 */
         header {
             position: fixed;
             top: 0;
@@ -49,31 +49,33 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+            padding: 8px 12px;
         }
 
         .logo {
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 4px;
+            white-space: nowrap;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 15px;
+            gap: 6px;
         }
 
         nav a {
             text-decoration: none;
             color: var(--line-color);
             font-weight: bold;
-            font-size: 0.95rem;
-            padding: 4px 8px;
-            border-radius: 8px;
+            font-size: 0.85rem;
+            padding: 3px 6px;
+            border-radius: 6px;
             transition: background 0.2s;
+            white-space: nowrap;
         }
 
         nav a:hover {
@@ -83,11 +85,11 @@
         /* 主容器 */
         .container {
             max-width: 600px;
-            margin: 80px auto 20px auto;
+            margin: 75px auto 20px auto;
             padding: 0 15px;
         }
 
-        /* 通用卡片樣式：大圓角、3px 粗線框、平塗 */
+        /* 通用卡片樣式 */
         .card {
             background-color: var(--card-bg);
             border: 3px solid var(--line-color);
@@ -137,7 +139,6 @@
             margin: 10px auto;
         }
 
-        /* 標題樣式 */
         h2.section-title {
             font-size: 1.25rem;
             margin-bottom: 12px;
@@ -174,10 +175,10 @@
             overflow-x: auto;
             padding-bottom: 8px;
             margin-bottom: 15px;
-            scrollbar-width: none; /* Firefox */
+            scrollbar-width: none;
         }
         .day-tabs::-webkit-scrollbar {
-            display: none; /* Chrome */
+            display: none;
         }
 
         .day-tab {
@@ -200,7 +201,6 @@
             box-shadow: 3px 3px 0px var(--line-color);
         }
 
-        /* 行程內容與彈跳動畫 */
         .day-content {
             display: none;
         }
@@ -277,7 +277,6 @@
             font-size: 1rem;
         }
 
-        /* 標籤樣式 */
         .tag {
             font-size: 0.75rem;
             padding: 2px 8px;
@@ -294,7 +293,6 @@
             color: #555;
         }
 
-        /* 待辦清單 */
         .todo-list {
             list-style: none;
         }
@@ -323,20 +321,14 @@
             color: #888;
         }
 
-        /* 住宿資訊 */
         .hotel-info p {
             font-size: 0.9rem;
             margin-bottom: 6px;
         }
 
-        /* 減少動態效果設定支援 */
         @media (prefers-reduced-motion: reduce) {
-            .floating-svg {
-                animation: none !important;
-            }
-            .day-content.active {
-                animation: none !important;
-            }
+            .floating-svg { animation: none !important; }
+            .day-content.active { animation: none !important; }
         }
     </style>
 </head>
@@ -345,8 +337,8 @@
     <!-- 頂端固定選單 -->
     <header>
         <div class="logo">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3D4852" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M12 2v20"></path></svg>
-            釜山慢活 8 日
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3D4852" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M12 2v20"></path></svg>
+            釜山慢活
         </div>
         <nav>
             <ul>
@@ -362,13 +354,9 @@
 
         <!-- 首頁 Banner -->
         <section id="home" class="card hero">
-            <!-- 手繪 SVG：釜山廣安大橋與海鷗 -->
             <svg class="floating-svg" width="160" height="90" viewBox="0 0 160 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- 背景小太陽 -->
                 <circle cx="130" cy="30" r="16" fill="#E5D5C5" stroke="#3D4852" stroke-width="2.5"/>
-                <!-- 海鷗 1 -->
                 <path d="M20 35 C25 25, 35 25, 40 35 C45 25, 55 25, 60 35" stroke="#3D4852" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                <!-- 廣安大橋簡約線條 -->
                 <path d="M10 75 H150" stroke="#3D4852" stroke-width="3" stroke-linecap="round"/>
                 <path d="M20 75 L35 45 H125 L140 75" stroke="#3D4852" stroke-width="2.5" fill="#B5D8EB"/>
                 <path d="M35 45 C50 65, 110 65, 125 45" stroke="#3D4852" stroke-width="2.5" fill="none"/>
@@ -378,25 +366,23 @@
             </svg>
             <h1>釜山漫活療癒之旅</h1>
             <p>放慢腳步，聽海浪與咖啡香的對話 🌊☕</p>
-            <div class="countdown-box" id="countdown">計算出發倒數中...</div>
+            <div class="countdown-box" id="countdown">航班時間待定中 🎒</div>
         </section>
 
         <!-- 航班卡片 -->
         <section id="flights" class="card">
-            <h2 class="section-title">
-                ✈️ 航班資訊
-            </h2>
+            <h2 class="section-title">✈️ 航班資訊</h2>
             <div class="flight-grid">
                 <div class="flight-item">
                     <h3>去程</h3>
-                    <p><b>BX 798</b></p>
-                    <p>03/28 (六) 11:35 - 14:50</p>
+                    <p><b>待定</b></p>
+                    <p>時間未定</p>
                     <p style="font-size:0.8rem; color:#666;">台北 (TPE) ➔ 釜山 (PUS)</p>
                 </div>
                 <div class="flight-item">
                     <h3>回程</h3>
-                    <p><b>BX 797</b></p>
-                    <p>04/04 (六) 09:05 - 10:35</p>
+                    <p><b>待定</b></p>
+                    <p>時間未定</p>
                     <p style="font-size:0.8rem; color:#666;">釜山 (PUS) ➔ 台北 (TPE)</p>
                 </div>
             </div>
@@ -404,11 +390,8 @@
 
         <!-- 每日行程 -->
         <section id="itinerary" class="card">
-            <h2 class="section-title">
-                🗓️ 8日慢活行程
-            </h2>
+            <h2 class="section-title">🗓️ 8日慢活行程</h2>
 
-            <!-- 日期切換 Tab -->
             <div class="day-tabs">
                 <button class="day-tab active" onclick="switchDay(1)">Day 1 抵達海雲台</button>
                 <button class="day-tab" onclick="switchDay(2)">Day 2 藍線公園</button>
@@ -425,7 +408,7 @@
                 <div class="day-header-desc">✨ 主題：初見釜山，入住海雲台聽海浪聲入眠</div>
                 <div class="timeline">
                     <div class="timeline-item">
-                        <div class="time">14:50 - 16:30</div>
+                        <div class="time">下午</div>
                         <div class="activity-card">
                             <div class="activity-title-row">
                                 <span class="activity-name">抵達金海機場 & 搭乘利木津巴士</span>
@@ -435,7 +418,7 @@
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="time">17:30</div>
+                        <div class="time">傍晚</div>
                         <div class="activity-card">
                             <div class="activity-title-row">
                                 <span class="activity-name">入住海雲台海景飯店</span>
@@ -445,7 +428,7 @@
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="time">19:00</div>
+                        <div class="time">晚餐</div>
                         <div class="activity-card">
                             <div class="activity-title-row">
                                 <span class="activity-name">元祖密陽豬肉湯飯</span>
@@ -634,7 +617,7 @@
                 <div class="day-header-desc">✨ 主題：帶著滿滿回憶賦歸</div>
                 <div class="timeline">
                     <div class="timeline-item">
-                        <div class="time">06:30</div>
+                        <div class="time">早上</div>
                         <div class="activity-card">
                             <div class="activity-title-row">
                                 <span class="activity-name">退房並前往金海機場</span>
@@ -645,14 +628,11 @@
                     </div>
                 </div>
             </div>
-
         </section>
 
         <!-- 住宿與待辦 -->
         <section id="todo" class="card">
-            <h2 class="section-title">
-                🏨 住宿資訊
-            </h2>
+            <h2 class="section-title">🏨 住宿資訊</h2>
             <div class="hotel-info">
                 <p><b>名稱：</b> 釜山海雲台美景飯店 (Haeundae Sea View Hotel)</p>
                 <p><b>地址：</b> 釜山廣域市海雲台區海雲台海邊路 (近 2 號線海雲台站 3 號出口)</p>
@@ -661,35 +641,25 @@
         </section>
 
         <section class="card">
-            <h2 class="section-title">
-                ☑️ 行李與行前待辦清單
-            </h2>
+            <h2 class="section-title">☑️ 行李與行前待辦清單</h2>
             <ul class="todo-list">
-                <li class="todo-item"><input type="checkbox" onchange="toggleCheck(this)"> <span>護照與有效台胞證/簽證 (確認效期 6 個月以上)</span></li>
+                <li class="todo-item"><input type="checkbox" onchange="toggleCheck(this)"> <span>護照與有效簽證/入境申報 (確認效期 6 個月以上)</span></li>
                 <li class="todo-item"><input type="checkbox" onchange="toggleCheck(this)"> <span>韓元現金 / T-money 交通卡</span></li>
                 <li class="todo-item"><input type="checkbox" onchange="toggleCheck(this)"> <span>網卡 / eSIM 漫遊設定</span></li>
                 <li class="todo-item"><input type="checkbox" onchange="toggleCheck(this)"> <span>轉接插頭 (韓國標準圓形雙孔)</span></li>
                 <li class="todo-item"><input type="checkbox" onchange="toggleCheck(this)"> <span>心情放鬆，準備好好享受慢步調！</span></li>
             </ul>
         </section>
-
     </div>
 
-    <!-- JavaScript 互動功能 -->
     <script>
-        // 日期切換功能
         function switchDay(dayNum) {
-            const tabs = document.querySelectorAll('.day-tab');
-            tabs.forEach(tab => tab.classList.remove('active'));
-
-            const contents = document.querySelectorAll('.day-content');
-            contents.forEach(content => content.classList.remove('active'));
-
+            document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
             event.target.classList.add('active');
             document.getElementById(`day-${dayNum}`).classList.add('active');
         }
 
-        // 待辦清單互動切換
         function toggleCheck(checkbox) {
             if (checkbox.checked) {
                 checkbox.parentElement.classList.add('checked');
@@ -697,23 +667,6 @@
                 checkbox.parentElement.classList.remove('checked');
             }
         }
-
-        // 動態倒數計時器
-        function updateCountdown() {
-            const departureDate = new Date('2026-03-28T11:35:00');
-            const now = new Date();
-            const diff = departureDate - now;
-
-            const countdownEl = document.getElementById('countdown');
-            if (diff > 0) {
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-                countdownEl.innerText = `距離出發還有 ${days} 天 ${hours} 小時 🎒`;
-            } else {
-                countdownEl.innerText = `祝你有個愉快的釜山之旅！✨`;
-            }
-        }
-        updateCountdown();
     </script>
 </body>
 </html>
