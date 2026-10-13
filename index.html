@@ -468,7 +468,7 @@
 
             <h1>小呆毛們の釜山之旅</h1>
             <p>放慢腳步，聽海浪與咖啡香的對話 🌊☕</p>
-            <div class="countdown-box" id="countdown">航班時間待定中 🎒</div>
+            <div class="countdown-box" id="countdown">計算倒數中... 🎒</div>
         </section>
 
         <!-- 航班卡片 -->
@@ -477,14 +477,14 @@
             <div class="flight-grid">
                 <div class="flight-item">
                     <h3>去程</h3>
-                    <p><b>待定</b></p>
-                    <p>時間未定</p>
+                    <p><b>2027 / 07 / 06 (二)</b></p>
+                    <p>時間待定</p>
                     <p style="font-size:0.8rem; color:#666;">台北 (TPE) ➔ 釜山 (PUS)</p>
                 </div>
                 <div class="flight-item">
                     <h3>回程</h3>
-                    <p><b>待定</b></p>
-                    <p>時間未定</p>
+                    <p><b>2027 / 07 / 14 (三)</b></p>
+                    <p>時間待定</p>
                     <p style="font-size:0.8rem; color:#666;">釜山 (PUS) ➔ 台北 (TPE)</p>
                 </div>
             </div>
@@ -524,7 +524,7 @@
                         <div class="time">傍晚</div>
                         <div class="activity-card">
                             <div class="activity-title-row">
-                                <span class="activity-name">入住飯店 (待定)</span>
+                                <span class="activity-name">入住飯店：海雲台拉梅爾</span>
                                 <span class="tag tag-must">必去</span>
                             </div>
                             <div class="activity-desc">Check-in 稍作休息，準備展開美好的釜山假期。</div>
@@ -812,8 +812,8 @@
         <section id="todo" class="card">
             <h2 class="section-title">🏨 住宿資訊</h2>
             <div class="hotel-info">
-                <p><b>名稱：</b> 待定 (飯店籌備中)</p>
-                <p><b>地址：</b> 待定</p>
+                <p><b>名稱：</b> 海雲台拉梅爾 (Haeundae Lamer Hotel)</p>
+                <p><b>地址：</b> 釜山廣域市海雲台區 (近海雲台海水浴場/捷運站)</p>
                 <p><b>特色：</b> 舒適放鬆，享受兩個人的美好假期。</p>
             </div>
         </section>
@@ -870,8 +870,24 @@
             alert(`Day ${dayNum} 的小日記已儲存成功！✨`);
         }
 
-        // 載入時自動讀取已儲存的日記
+        // 倒數計時功能 (目標日期：2027/07/06)
+        function updateCountdown() {
+            const targetDate = new Date('2027-07-06T00:00:00');
+            const now = new Date();
+            const diff = targetDate - now;
+
+            const countdownElement = document.getElementById('countdown');
+            if (diff <= 0) {
+                countdownElement.innerText = '出發囉！旅途愉快 🎉🎒';
+            } else {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                countdownElement.innerText = `距離出發還有 ${days} 天 🎒`;
+            }
+        }
+
+        // 載入時自動讀取已儲存的日記與執行倒數
         window.onload = function() {
+            updateCountdown();
             for (let i = 1; i <= 9; i++) {
                 const saved1 = localStorage.getItem(`busan_diary_${i}_1`);
                 const saved2 = localStorage.getItem(`busan_diary_${i}_2`);
