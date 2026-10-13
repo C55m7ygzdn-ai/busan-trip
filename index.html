@@ -4,6 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>小呆毛們の釜山之旅</title>
+    
+    <!-- 引入 Firebase SDK (V9 Modular Scripts via CDN) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        // ⚠️ 請在此處貼上你從 Firebase 拿到的 firebaseConfig 設定 ⚠️
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+            projectId: "YOUR_PROJECT",
+            storageBucket: "YOUR_PROJECT.appspot.com",
+            messagingSenderId: "xxxxxxxxx",
+            appId: "xxxxxxxxx"
+        };
+
+        // 初始化 Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // 儲存日記至雲端資料庫
+        window.saveDiary = function(dayNum) {
+            const val1 = document.getElementById(`diary-${dayNum}-1`).value;
+            const val2 = document.getElementById(`diary-${dayNum}-2`).value;
+
+            set(ref(database, `diaries/day_${dayNum}`), {
+                user1: val1,
+                user2: val2,
+                updatedAt: new Date().toISOString()
+            }).then(() => {
+                alert(`Day ${dayNum} 的小日記已儲存並同步至雲端！✨`);
+            }).catch((error) => {
+                alert("儲存失敗，請檢查網路連線或 Firebase 設定！");
+                console.error(error);
+            });
+        };
+
+        // 即時監聽雲端資料庫變更（兩支手機隨時自動同步）
+        const diaryRef = ref(database, 'diaries');
+        onValue(diaryRef, (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                for (let i = 1; i <= 9; i++) {
+                    if (data[`day_${i}`]) {
+                        const diary1 = document.getElementById(`diary-${i}-1`);
+                        const diary2 = document.getElementById(`diary-${i}-2`);
+                        
+                        // 僅在使用者未聚焦輸入時自動更新，避免打字打到一半被覆蓋
+                        if (diary1 && document.activeElement !== diary1) {
+                            diary1.value = data[`day_${i}`].user1 || '';
+                        }
+                        if (diary2 && document.activeElement !== diary2) {
+                            diary2.value = data[`day_${i}`].user2 || '';
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
         @font-face {
@@ -861,15 +922,6 @@
             }
         }
 
-        // 儲存日記功能
-        function saveDiary(dayNum) {
-            const val1 = document.getElementById(`diary-${dayNum}-1`).value;
-            const val2 = document.getElementById(`diary-${dayNum}-2`).value;
-            localStorage.setItem(`busan_diary_${dayNum}_1`, val1);
-            localStorage.setItem(`busan_diary_${dayNum}_2`, val2);
-            alert(`Day ${dayNum} 的小日記已儲存成功！✨`);
-        }
-
         // 倒數計時功能 (目標日期：2027/07/06)
         function updateCountdown() {
             const targetDate = new Date('2027-07-06T00:00:00');
@@ -885,20 +937,7 @@
             }
         }
 
-        // 載入時自動讀取已儲存的日記與執行倒數
-        window.onload = function() {
-            updateCountdown();
-            for (let i = 1; i <= 9; i++) {
-                const saved1 = localStorage.getItem(`busan_diary_${i}_1`);
-                const saved2 = localStorage.getItem(`busan_diary_${i}_2`);
-                if (saved1 && document.getElementById(`diary-${i}-1`)) {
-                    document.getElementById(`diary-${i}-1`).value = saved1;
-                }
-                if (saved2 && document.getElementById(`diary-${i}-2`)) {
-                    document.getElementById(`diary-${i}-2`).value = saved2;
-                }
-            }
-        }
+        window.addEventListener('load', updateCountdown);
     </script>
 </body>
 </html>
