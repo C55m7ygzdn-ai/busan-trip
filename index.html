@@ -10,7 +10,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-        // 你的專屬 Firebase 設定檔
         const firebaseConfig = {
             apiKey: "AIzaSyDH73-Cg-6Mhug2cksxuYbLJO5wvsTsRUE",
             authDomain: "busantrip-f2c3c.firebaseapp.com",
@@ -22,11 +21,9 @@
             measurementId: "G-JVEW67GXR1"
         };
 
-        // 初始化 Firebase
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
 
-        // 儲存日記至雲端資料庫
         window.saveDiary = function(dayNum) {
             const val1 = document.getElementById(`diary-${dayNum}-1`).value;
             const val2 = document.getElementById(`diary-${dayNum}-2`).value;
@@ -43,7 +40,6 @@
             });
         };
 
-        // 即時監聽雲端資料庫變更（兩支手機隨時自動同步）
         const diaryRef = ref(database, 'diaries');
         onValue(diaryRef, (snapshot) => {
             const data = snapshot.val();
@@ -75,20 +71,20 @@
         }
 
         :root {
-            --bg-color: #F8F9FA;   /* 網站背景色：清透棉花白 */
-            --line-color: #3D4852; /* 框線與文字：質感深灰藍 */
-            --coral: #89C4E1;      /* 主標籤/點點：清透粉藍 */
-            --yellow: #E5D5C5;     /* 亮點/標籤：暖暖奶茶色 */
-            --blue: #B5D8EB;       /* Banner/卡片：粉藍天色 */
-            --green: #D3E0EA;      /* 主題卡片：霧灰藍 */
-            --card-bg: #FFFFFF;    /* 卡片底色：純白 */
+            --bg-color: #F8F9FA;   
+            --line-color: #3D4852; 
+            --coral: #89C4E1;      
+            --yellow: #E5D5C5;     
+            --blue: #B5D8EB;       
+            --green: #D3E0EA;      
+            --card-bg: #FFFFFF;    
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            word-break: keep-all; /* 防止單字或詞彙被拆在奇怪的地方 */
+            word-break: keep-all; 
             overflow-wrap: break-word;
         }
 
@@ -100,7 +96,6 @@
             padding-bottom: 60px;
         }
 
-        /* 頂端固定選單 */
         header {
             position: fixed;
             top: 0;
@@ -145,14 +140,12 @@
             background-color: var(--yellow);
         }
 
-        /* 主容器：針對手機螢幕做寬度優化 */
         .container {
             max-width: 600px;
             margin: 75px auto 20px auto;
             padding: 0 12px;
         }
 
-        /* 通用卡片樣式 */
         .card {
             background-color: var(--card-bg);
             border: 3px solid var(--line-color);
@@ -162,7 +155,6 @@
             box-shadow: 4px 4px 0px var(--line-color);
         }
 
-        /* 首頁 Banner */
         .hero {
             text-align: center;
             background-color: var(--blue);
@@ -190,7 +182,6 @@
             font-size: 0.9rem;
         }
 
-        /* 純圖片頭像動畫與排版（無外圓框） */
         @keyframes floatLeft {
             0% { transform: translateY(0px) rotate(-3deg); }
             50% { transform: translateY(-8px) rotate(2deg); }
@@ -252,7 +243,6 @@
             gap: 6px;
         }
 
-        /* 航班卡片 */
         .flight-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -273,7 +263,6 @@
             color: #4A7A96;
         }
 
-        /* 每日行程 - 日期切換 Tab */
         .day-tabs {
             display: flex;
             gap: 6px;
@@ -331,7 +320,6 @@
             line-height: 1.5;
         }
 
-        /* 時間軸 */
         .timeline {
             position: relative;
             padding-left: 16px;
@@ -363,7 +351,6 @@
             margin-bottom: 3px;
         }
 
-        /* 可折疊點擊卡片樣式 - 手機版彈性換行與間距優化 */
         .activity-card {
             background-color: var(--bg-color);
             border: 2px solid var(--line-color);
@@ -383,7 +370,7 @@
             justify-content: space-between;
             align-items: flex-start;
             gap: 8px;
-            flex-wrap: wrap; /* 手機版自動彈性換行 */
+            flex-wrap: wrap;
         }
 
         .activity-name {
@@ -415,7 +402,6 @@
             line-height: 1.4;
         }
 
-        /* 隱藏/展開內容面板 */
         .toggle-btn {
             display: inline-block;
             margin-top: 6px;
@@ -426,6 +412,26 @@
             padding: 3px 8px;
             border-radius: 8px;
             border: 1px solid var(--line-color);
+        }
+
+        /* Naver Map 按鈕樣式 */
+        .naver-map-btn {
+            display: inline-block;
+            margin-top: 6px;
+            margin-left: 6px;
+            font-size: 0.78rem;
+            font-weight: bold;
+            color: #03C75A;
+            background: #E8F8F0;
+            padding: 3px 8px;
+            border-radius: 8px;
+            border: 1.5px solid #03C75A;
+            text-decoration: none;
+            transition: all 0.1s;
+        }
+        .naver-map-btn:hover {
+            background: #03C75A;
+            color: #FFF;
         }
 
         .expand-details {
@@ -457,7 +463,6 @@
             font-size: 0.82rem;
         }
 
-        /* 每日小日記區塊樣式 */
         .diary-section {
             margin-top: 16px;
             background: #FFF9F0;
@@ -557,7 +562,6 @@
 </head>
 <body>
 
-    <!-- 頂端固定選單 -->
     <header>
         <div class="logo">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3D4852" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M12 2v20"></path></svg>
@@ -576,9 +580,7 @@
 
     <div class="container">
 
-        <!-- 首頁 Banner -->
         <section id="home" class="card hero">
-            <!-- 雙人純去背頭像區塊 -->
             <div class="avatar-container">
                 <div class="avatar-img-box left">
                     <img src="avatar1.png.PNG" alt="男生頭像">
@@ -594,7 +596,6 @@
             <div class="countdown-box" id="countdown">計算倒數中... 🎒</div>
         </section>
 
-        <!-- 航班卡片 -->
         <section id="flights" class="card">
             <h2 class="section-title">✈️ 航班資訊</h2>
             <div class="flight-grid">
@@ -613,9 +614,8 @@
             </div>
         </section>
 
-        <!-- 每日行程 -->
         <section id="itinerary" class="card">
-            <h2 class="section-title">🗓️ 9日精緻的快樂行程</h2>
+            <h2 class="section-title">🗓️ 9日精緻行程</h2>
 
             <div class="day-tabs">
                 <button class="day-tab active" onclick="switchDay(1)">Day 1</button>
@@ -631,17 +631,18 @@
 
             <!-- Day 1 -->
             <div id="day-1" class="day-content active">
-                <div class="day-header-desc">✨ Day 1：搭飛機+海雲台Check-in </div>
+                <div class="day-header-desc">✨ Day 1：搭飛機 海雲台飯店 Check-in 海雲台夜間漫步</div>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="time">行程</div>
                         <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
-                                <span class="activity-name">搭飛機 海雲台溫德姆華美達安可飯店 Check-in </span>
+                                <span class="activity-name">搭飛機 海雲台溫德姆華美達安可飯店 Check-in 海雲台夜間漫步</span>
                                 <span class="tag tag-transport">住宿/交通</span>
                             </div>
                             <div class="activity-desc-short">抵達金海國際機場，前往飯店辦理入住並前往海雲台海水浴場晚間散步。</div>
                             <span class="toggle-btn">🚆 查看飯店與交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/라마다앙코르 바이 제이더블유 해운대" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
                                     <b>🏨 飯店：</b>海雲台溫德姆華美達安可飯店 (Ramada Encore by Wyndham Haeundae)<br>
@@ -663,7 +664,7 @@
 
             <!-- Day 2 -->
             <div id="day-2" class="day-content">
-                <div class="day-header-desc">✨ Day 2：松島纜車+鑽石遊艇!!!</div>
+                <div class="day-header-desc">✨ Day 2：早午餐 松島纜車/龍宮雲橋 李在模披薩 鑽石遊艇 嚴湧帛豬肉湯飯</div>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="time">行程 1</div>
@@ -672,11 +673,12 @@
                                 <span class="activity-name">海雲台早午餐</span>
                                 <span class="tag tag-food">早午餐</span>
                             </div>
-                            <div class="activity-desc-short">路上隨選一間順眼的質感咖啡廳享用美味早午餐。</div>
-                            <span class="toggle-btn">🚇 查看交通指引</span>
+                            <div class="activity-desc-short">在海雲台周邊享用美味早午餐。</div>
+                            <span class="toggle-btn">🚶 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/해운대 브런치" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚇 步行：</b>從飯店出發後,依照當天心情挑選店家。
+                                    <b>🚶 步行：</b>從飯店出發後，依照當天心情挑選店家。
                                 </div>
                             </div>
                         </div>
@@ -690,11 +692,12 @@
                                 <span class="tag tag-must">必去</span>
                             </div>
                             <div class="activity-desc-short">搭乘松島海上纜車俯瞰海岸與漫步龍宮吊橋。</div>
-                            <span class="toggle-btn">🚕 查看交通</span>
+                            <span class="toggle-btn">🚕 查看交通建議</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/송도해상케이블카" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
                                     <b>🚕 交通建議：</b>可在海雲台搭乘 1011號公車（會行經廣安大橋，車程約45分鐘左右），再轉乘區間公車或短程計程車前往松島<br>
-                                    <b>或直接搭地鐵 2 號線至南浦站/札嘎其站，轉搭短程計程車（約 10 分鐘）前往松島，時間更好掌控！。
+                                    <b>或直接搭地鐵 2 號線至南浦站/札嘎其站，轉搭短程計程車（約 10 分鐘）前往松島，時間更好掌控！</b>
                                 </div>
                             </div>
                         </div>
@@ -707,11 +710,12 @@
                                 <span class="activity-name">李在模披薩（總店）</span>
                                 <span class="tag tag-food">美食</span>
                             </div>
-                            <div class="activity-desc-short">直達南浦洞，享用超人氣濃郁起司披薩。</div>
+                            <div class="activity-desc-short">返回南浦洞，享用超人氣濃郁起司披薩。</div>
                             <span class="toggle-btn">🚕 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/이재모피자 본점" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚕 交通建議：</b>從松島搭計程車直達南浦洞（約 10 分鐘）。
+                                    <b>🚕 交通方式：</b>從松島搭計程車返回南浦洞（約 10 分鐘）。
                                 </div>
                             </div>
                         </div>
@@ -726,10 +730,11 @@
                             </div>
                             <div class="activity-desc-short">龍湖洞碼頭出海，欣賞絕美夕陽與廣安大橋夜景。</div>
                             <span class="toggle-btn">⛵ 查看碼頭交通與提醒</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/다이아몬드베이" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
                                     <b>🚕 交通方式：</b>從南浦洞搭計程車（約 20-30 分鐘，留意傍晚尖峰塞車）至龍湖洞碼頭。<br>
-                                    <b>⏰ 時間提醒：</b>建議提前30~45分鐘報到！
+                                    <b>⏰ 時間提醒：</b>建議提前報到！
                                 </div>
                             </div>
                         </div>
@@ -744,6 +749,7 @@
                             </div>
                             <div class="activity-desc-short">嚴湧帛豬肉湯飯，米其林推薦清爽濃郁湯飯！</div>
                             <span class="toggle-btn">🍲 查看地鐵/返回海雲台交通</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/엄용백 돼지국밥 수영점" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
                                     <b>🚇 地鐵站：</b>搭地鐵至 水營站（2號線 208）1 號出口步行 5 分鐘。<br>
@@ -764,7 +770,7 @@
 
             <!-- Day 3 -->
             <div id="day-3" class="day-content">
-                <div class="day-header-desc">✨ Day 3：天空膠囊+海岸列車/樂天世界</div>
+                <div class="day-header-desc">✨ Day 3：天空膠囊 / DIART coffee / 樂天世界+超市</div>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="time">行程 1（11:00 出門）</div>
@@ -774,7 +780,8 @@
                                 <span class="tag tag-food">美味點心</span>
                             </div>
                             <div class="activity-desc-short">現烤法國 AOP 奶油海鹽麵包香氣濃郁！</div>
-                            <span class="toggle-btn">🥐 查看交通指引</span>
+                            <span class="toggle-btn">🥐 查看步行指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/자연도소금빵 해운대" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
                                     <b>🚶 步行：</b>海雲台站 3 號出口出發，步行約 15 分鐘至藍線公園尾浦站入口旁購買現烤海鹽奶油麵包。
@@ -792,6 +799,7 @@
                             </div>
                             <div class="activity-desc-short">彩色高空車廂，漫遊高空海岸線。</div>
                             <span class="toggle-btn">🚃 查看搭乘說明</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/블루라인파크 미포정거장" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
                                     <b>🚃 藍線公園：</b>由尾浦站搭乘膠囊列車至青沙浦站下車。
@@ -808,7 +816,8 @@
                                 <span class="tag tag-food">海景咖啡</span>
                             </div>
                             <div class="activity-desc-short">青沙浦海景第一排，享用精品手沖咖啡。</div>
-                            <span class="toggle-btn">☕ 查看步行位置</span>
+                            <span class="toggle-btn">☕ 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/디아트커피 청사포" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
                                     <b>🚶 步行：</b>膠囊列車青沙浦站下車後，步行 2 分鐘即達。
@@ -825,7 +834,8 @@
                                 <span class="tag tag-must">景點</span>
                             </div>
                             <div class="activity-desc-short">搭海岸列車，於踏捷天空步道散步後至松亭站。</div>
-                            <span class="toggle-btn">🌊 查看路線</span>
+                            <span class="toggle-btn">🌊 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/청사포다릿돌스카이워크" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
                                     <b>🌊 海岸列車：</b>青沙浦站上車，順遊踏捷天空步道與松亭站。
@@ -843,6 +853,7 @@
                             </div>
                             <div class="activity-desc-short">超爆量鮮貝大碗海鮮刀削麵！</div>
                             <span class="toggle-btn">🍜 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/해운대31cm해물칼국수 송정점" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
                                     <b>🚶 步行：</b>海岸列車松亭站出站步行約 8 分鐘。
@@ -859,11 +870,12 @@
                                 <span class="tag tag-must">樂園購物</span>
                             </div>
                             <div class="activity-desc-short">樂天世界主題樂園暢玩與樂天超市採買。</div>
-                            <span class="toggle-btn">🏰 查看交通與推薦</span>
+                            <span class="toggle-btn">🏰 查看交通與備註</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/롯데월드 어드벤처 부산" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚕/🚇 交通：</b>從松亭搭計程車（約 5-8 分鐘）直達樂天世界；或搭東海線至 奧西利亞站 (Osiria) 1 號出口步行 10 分鐘。<br>
-                                    <b>🎆推薦：</b>魔法森林花車遊行每日傍晚/夜間盛大登場（城堡前至說話大樹區，週二除外），極推薦留到晚上觀賞！
+                                    <b>🚕/🚇 計程車/地鐵：</b>從松亭搭計程車（約 5-8 分鐘）直達樂天世界；或搭東海線至 奧西利亞站 (Osiria) 1 號出口步行 10 分鐘。<br>
+                                    <b>🎆 備註：</b>魔法森林花車夜間遊行為每日傍晚/夜間盛大登場（城堡前至說話大樹區，週二除外），極推薦留到晚上觀賞！
                                 </div>
                             </div>
                         </div>
@@ -880,7 +892,7 @@
 
             <!-- Day 4 -->
             <div id="day-4" class="day-content">
-                <div class="day-header-desc">✨ Day 4：釜山觀光巴士~影島區一日遊</div>
+                <div class="day-header-desc">✨ Day 4：釜山站換觀光巴士票 ARTE Museum Miffy Cafe Busan 影島區一日遊</div>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="time">行程 1（11:00 出門）</div>
@@ -890,10 +902,11 @@
                                 <span class="tag tag-transport">換票</span>
                             </div>
                             <div class="activity-desc-short">前往釜山站，憑 PASS 免費兌換觀光巴士 1 日券開啟省力探索！</div>
-                            <span class="toggle-btn">🚌 查看換票處出口</span>
+                            <span class="toggle-btn">🚌 查看交通指引與換票處地點</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/부산역" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚌 地鐵站：</b>地鐵 釜山站（1號線 113）6 號或 8 號出口（KTX 釜山站 2 樓觀光巴士櫃檯）。
+                                    <b>🚌 地鐵：</b>釜山站（1號線 113）6 號或 8 號出口（KTX 釜山站 2 樓觀光巴士櫃檯）。
                                 </div>
                             </div>
                         </div>
@@ -907,11 +920,11 @@
                                 <span class="tag tag-must">必去</span>
                             </div>
                             <div class="activity-desc-short">影島區最新頂級沉浸式數位光影藝術展，超震撼視覺盛宴！</div>
-                            <span class="toggle-btn">🎨 查看交通</span>
+                            <span class="toggle-btn">🎨 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/아르떼뮤지엄 부산" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚕交通：</b>從釜山站搭計程車（約 12-15 分鐘）過橋直達影島 ARTE Museum。<br>
-                                    <b>🚌巴士：</b>可搭配釜山觀光巴士(一日卷免費搭乘)
+                                    <b>🚕 觀光巴士：</b>觀光巴士第7站 , 或搭計程車（約 12-15 分鐘）過橋直達影島 ARTE Museum。
                                 </div>
                             </div>
                         </div>
@@ -925,10 +938,11 @@
                                 <span class="tag tag-food">主題咖啡</span>
                             </div>
                             <div class="activity-desc-short">影島超可愛米飛兔主題咖啡廳，拍照與吃點心。</div>
-                            <span class="toggle-btn">🐰 查看地點</span>
+                            <span class="toggle-btn">🐰 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/미피카페 부산" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>📍 位置：</b>影島區瓦馳路51번길 2 (可慢慢散步過去或搭計程車)
+                                    <b>📍 步行：</b>地址 : 影島區瓦馳路51번길 2 或改搭計程車
                                 </div>
                             </div>
                         </div>
@@ -942,10 +956,11 @@
                                 <span class="tag tag-must">經典影島</span>
                             </div>
                             <div class="activity-desc-short">走訪影島大橋、懸崖步道白險灘文化村與太宗台壯麗海景。</div>
-                            <span class="toggle-btn">🌊 查看交通路線</span>
+                            <span class="toggle-btn">🌊 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/영도 흰여울문화마을" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚌/🚕 交通：</b>可全程搭乘觀光巴士路線串聯，或搭計程車於影島各景點間順遊。
+                                    <b>🚌觀光巴士：</b>可全程搭乘觀光巴士路線串聯，或搭計程車於影島各景點間順遊。
                                 </div>
                             </div>
                         </div>
@@ -962,7 +977,7 @@
 
             <!-- Day 5 -->
             <div id="day-5" class="day-content">
-                <div class="day-header-desc">✨ Day 5：金剛公園+東萊蔥煎餅/廣安里無人機秀</div>
+                <div class="day-header-desc">✨ Day 5：MOMOS COFFEE / 金剛公園 / 廣安里無人機秀</div>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="time">行程 1</div>
@@ -972,10 +987,11 @@
                                 <span class="tag tag-food">冠軍咖啡</span>
                             </div>
                             <div class="activity-desc-short">世界咖啡師冠軍創始店，絕美竹林庭園咖啡配輕食早午餐。</div>
-                            <span class="toggle-btn">☕ 查看地鐵出口</span>
+                            <span class="toggle-btn">☕ 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/모모스커피 온천장본점" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚇 地鐵站：</b>地鐵 溫泉場站（1號線 127）2 號出口正對面。
+                                    <b>🚇 地鐵：</b>溫泉場站（1號線 127）2 號出口正對面。
                                 </div>
                             </div>
                         </div>
@@ -989,7 +1005,8 @@
                                 <span class="tag tag-must">山林</span>
                             </div>
                             <div class="activity-desc-short">金剛公園芬多精綠意散步與纜車之旅。</div>
-                            <span class="toggle-btn">🌲 查看步行路線</span>
+                            <span class="toggle-btn">🌲 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/금강공원" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
                                     <b>🚶 步行：</b>從 MOMOS COFFEE 咖啡廳步行約 8-10 分鐘抵達。
@@ -1006,10 +1023,11 @@
                                 <span class="tag tag-must">歷史公園</span>
                             </div>
                             <div class="activity-desc-short">沿古城牆步道散步，俯瞰東萊區市景。</div>
-                            <span class="toggle-btn">🏛️ 查看交通</span>
+                            <span class="toggle-btn">🏛️ 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/동래읍성사적공원" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚶 交通：</b>從金剛公園步行或搭乘 1 站公車即達。
+                                    <b>🚶 步行：</b>從金剛公園步行或搭乘 1 站公車即達。
                                 </div>
                             </div>
                         </div>
@@ -1034,11 +1052,12 @@
                                 <span class="tag tag-must">免費夜秀</span>
                             </div>
                             <div class="activity-desc-short">前往廣安里沙灘，欣賞廣安大橋背景下的精彩夜間無人機燈光秀！</div>
-                            <span class="toggle-btn">🚁 查看地鐵與無人機演出時間</span>
+                            <span class="toggle-btn">🚁 查看交通指引與備註</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/광안리해수욕장" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚇 地鐵站：</b>地鐵 廣安站（2號線 209）3 號或 5 號出口步行 10 分鐘到沙灘。<br>
-                                    <b>💡 演出時間：</b>每週六晚間定時演出（通常夏季為 20:00 與 22:00 各一場，每場約 10 分鐘），強烈推薦提前到沙灘卡位！
+                                    <b>🚇 地鐵：</b>廣安站（2號線 209）3 號或 5 號出口步行 10 分鐘到沙灘。<br>
+                                    <b>💡 備註：</b>演出時間為每週六晚間,通常夏季為 20:00 與 22:00 各一場(每場約 10 分鐘），強烈推薦提前到沙灘卡位！
                                 </div>
                             </div>
                         </div>
@@ -1055,7 +1074,7 @@
 
             <!-- Day 6 -->
             <div id="day-6" class="day-content">
-                <div class="day-header-desc">✨ Day 6：MOTHER-IN-LAW Bagel Haeundae/獬豸烤肉</div>
+                <div class="day-header-desc">✨ Day 6：MOTHER-IN-LAW Bagel Haeundae 廣安里沙灘散步 83獬豸烤肉</div>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="time">行程 1</div>
@@ -1065,10 +1084,11 @@
                                 <span class="tag tag-food">早午餐</span>
                             </div>
                             <div class="activity-desc-short">海理團路超人氣手工製作美式貝果專賣店。</div>
-                            <span class="toggle-btn">🥯 查看地鐵位置</span>
+                            <span class="toggle-btn">🥯 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/마더린러 해운대" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚇 地鐵站：</b>地鐵 海雲台站（2號線 203）附近（海理團路巷內）。
+                                    <b>🚇 地鐵：</b>海雲台站（2號線 203）附近（海理團路巷內）。
                                 </div>
                             </div>
                         </div>
@@ -1078,14 +1098,15 @@
                         <div class="time">行程 2</div>
                         <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
-                                <span class="activity-name">Gwangalli Beach 廣安里沙灘散步/附近逛逛</span>
+                                <span class="activity-name">Gwangalli Beach 廣安里沙灘散步</span>
                                 <span class="tag tag-must">海灘</span>
                             </div>
                             <div class="activity-desc-short">沙灘散步看海，體驗廣安里悠閒海濱氛圍與文創選物店。</div>
-                            <span class="toggle-btn">🏖️ 查看地鐵出口</span>
+                            <span class="toggle-btn">🏖️ 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/광안리해수욕장" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚇 地鐵站：</b>地鐵 廣安站（2號線 209）3 號或 5 號出口步行約 10 分鐘到沙灘。
+                                    <b>🚇 地鐵：</b>廣安站（2號線 209）3 號或 5 號出口步行約 10 分鐘到沙灘。
                                 </div>
                             </div>
                         </div>
@@ -1099,10 +1120,11 @@
                                 <span class="tag tag-food">美味烤肉</span>
                             </div>
                             <div class="activity-desc-short">廣安里超高評價人氣烤肉，吃完在沙灘欣賞燦爛廣安大橋夜景。</div>
-                            <span class="toggle-btn">🥩 查看返回海雲台交通</span>
+                            <span class="toggle-btn">🥩 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/83해치 광안점" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚕 回飯店：</b>吃完烤肉欣賞廣安大橋夜景後，搭計程車（約 15 分鐘）輕鬆返回海雲台飯店。
+                                    <b>🚕 計程車：</b>吃完烤肉欣賞廣安大橋夜景後，搭計程車（約 15 分鐘）輕鬆返回海雲台飯店。
                                 </div>
                             </div>
                         </div>
@@ -1119,7 +1141,7 @@
 
             <!-- Day 7 -->
             <div id="day-7" class="day-content">
-                <div class="day-header-desc">✨ Day 7：海雲台區漫步+味贊王鹽烤肉</div>
+                <div class="day-header-desc">✨ Day 7：Working Holiday / 海雲台漫步</div>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="time">行程 1</div>
@@ -1128,8 +1150,9 @@
                                 <span class="activity-name">Working Holiday Brunch Cafe ＆ Bakery</span>
                                 <span class="tag tag-food">質感早午餐</span>
                             </div>
-                            <div class="activity-desc-short">海理團路極具质感澳洲風格早午餐與烘焙麵包咖啡廳！</div>
-                            <span class="toggle-btn">☕ 查看地鐵/步行指引</span>
+                            <div class="activity-desc-short">海理團路極具質感澳洲風格早午餐與烘焙麵包咖啡廳！</div>
+                            <span class="toggle-btn">☕ 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/워킹홀리데이 해운대" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
                                     <b>🚇 地鐵站：</b>地鐵 海雲台站（2號線 203）4 號出口步行 5 分鐘（海理團路）。
@@ -1147,6 +1170,7 @@
                             </div>
                             <div class="activity-desc-short">海灘聽浪散步，逛傳統市場體驗盲鰻與熱騰騰在地小吃。</div>
                             <span class="toggle-btn">🌊 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/해운대시장" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
                                     <b>🚶 步行：</b>由海雲台站 3 號出口 straight 直行即達市場與沙灘。
@@ -1164,9 +1188,10 @@
                             </div>
                             <div class="activity-desc-short">釜山第一厚切三層肉名店，專人代烤外酥內嫩多汁！</div>
                             <span class="toggle-btn">🥩 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/맛찬들왕소금구이 해운대점" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚇 地鐵站：</b>地鐵 海雲台站（2號線 203）5 號或 7 號出口步行 3 分鐘，就在飯店周邊！
+                                    <b>🚇 地鐵：</b>海雲台站（2號線 203）5 號或 7 號出口步行 3 分鐘，就在飯店周邊！
                                 </div>
                             </div>
                         </div>
@@ -1183,7 +1208,7 @@
 
             <!-- Day 8 -->
             <div id="day-8" class="day-content">
-                <div class="day-header-desc">✨ Day 8：青沙浦人氣咖啡廳+釜山市民公園</div>
+                <div class="day-header-desc">✨ Day 8：Liberta 青沙浦海景咖啡 / 釜山市民公園</div>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="time">行程 1</div>
@@ -1194,9 +1219,10 @@
                             </div>
                             <div class="activity-desc-short">青沙浦海景第一排，享用美味早午餐與烘焙麵包。</div>
                             <span class="toggle-btn">☕ 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/리베르타 청사포점" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚕 交通建議：</b>從海雲台搭計程車（約 10 分鐘）直達青沙浦海岸。
+                                    <b>🚕 計程車：</b>從海雲台搭計程車（約 10 分鐘）直達青沙浦海岸。
                                 </div>
                             </div>
                         </div>
@@ -1210,10 +1236,11 @@
                                 <span class="tag tag-must">綠地公園</span>
                             </div>
                             <div class="activity-desc-short">漫步超大片美軍基地改建草皮綠地，享受芬多精。</div>
-                            <span class="toggle-btn">🌿 查看地鐵指引</span>
+                            <span class="toggle-btn">🌿 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/부산시민공원" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚇 地鐵站：</b>搭地鐵至 初田站 或 市民公園站 附近。
+                                    <b>🚇 地鐵：</b>初田站 或 市民公園站 附近。
                                 </div>
                             </div>
                         </div>
@@ -1241,7 +1268,7 @@
 
             <!-- Day 9 -->
             <div id="day-9" class="day-content">
-                <div class="day-header-desc">✨ Day 9：海雲台絕美早午餐/賦歸</div>
+                <div class="day-header-desc">✨ Day 9：海雲台絕美海景 / 賦歸</div>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="time">行程 1</div>
@@ -1252,9 +1279,10 @@
                             </div>
                             <div class="activity-desc-short">海雲台尾浦海岸旁，大面落地窗外盡攬海雲台沙灘全景。</div>
                             <span class="toggle-btn">🥞 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/랑데자뷰 해운대" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚇 地鐵站：</b>地鐵 中洞站（2號線 202）7 號出口步行 10 分鐘。
+                                    <b>🚇 地鐵：</b>中洞站（2號線 202）7 號出口步行 10 分鐘。
                                 </div>
                             </div>
                         </div>
@@ -1269,6 +1297,7 @@
                             </div>
                             <div class="activity-desc-short">整理行李，帶著滿滿愉快回憶前往機場搭機。</div>
                             <span class="toggle-btn">✈️ 查看機場交通方式</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/김해국제공항" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                             <div class="expand-details">
                                 <div class="info-pill">
                                     <b>✈️ 機場交通：</b><br>
@@ -1289,7 +1318,6 @@
             </div>
         </section>
 
-        <!-- 網友與朋友推薦區卡片 -->
         <section id="recommend" class="card">
             <h2 class="section-title">🥐 網友/朋友超強推薦區</h2>
             <p style="font-size:0.82rem; color:#666; margin-bottom:12px;">（點擊卡片展開查看地鐵與必買特色）</p>
@@ -1301,6 +1329,7 @@
                 </div>
                 <div class="activity-desc-short">嚴選法國 AOP 認證奶油製作，香氣濃郁的排隊鹽麵包！</div>
                 <span class="toggle-btn">🥐 查看地點與交通指引</span>
+                <a class="naver-map-btn" href="https://map.naver.com/v5/search/자연도소금빵 해운대" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                 <div class="expand-details">
                     <div class="info-pill">
                         <b>📍 位置：</b>藍線公園尾浦站入口旁。<br>
@@ -1315,7 +1344,8 @@
                     <span class="tag tag-rec">熱門伴手禮</span>
                 </div>
                 <div class="activity-desc-short">主打蜂蜜焦糖奶油夾心餅乾，釜山最近最紅的伴手禮！</div>
-                <span class="toggle-btn">🍯 查看地鐵出口指引</span>
+                <span class="toggle-btn">🍯 查看地點與交通指引</span>
+                <a class="naver-map-btn" href="https://map.naver.com/v5/search/부산바다샌드" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                 <div class="expand-details">
                     <div class="info-pill">
                         <b>📍 位置：</b>海雲台綠洲巷（佑洞）。<br>
@@ -1331,7 +1361,8 @@
                     <span class="tag tag-rec">極致拿鐵</span>
                 </div>
                 <div class="activity-desc-short">田浦咖啡街隱藏版名店，手工濃郁冰拿鐵與焦糖瑪奇朵！</div>
-                <span class="toggle-btn">☕ 查看地鐵出口指引</span>
+                <span class="toggle-btn">☕ 查看地點與交通指引</span>
+                <a class="naver-map-btn" href="https://map.naver.com/v5/search/프랭클린커피로스터스 전포" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                 <div class="expand-details">
                     <div class="info-pill">
                         <b>📍 位置：</b>釜山鎮區東城路 15 號（田浦洞）。<br>
@@ -1347,7 +1378,8 @@
                     <span class="tag tag-rec">尾浦必吃</span>
                 </div>
                 <div class="activity-desc-short">現做 Q 彈麻糬皮包覆濃郁冰淇淋的高人氣大福小吃！</div>
-                <span class="toggle-btn">🐯 查看地點指引</span>
+                <span class="toggle-btn">🐯 查看地點與交通指引</span>
+                <a class="naver-map-btn" href="https://map.naver.com/v5/search/호랑이젤라떡" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
                 <div class="expand-details">
                     <div class="info-pill">
                         <b>📍 位置：</b>藍線公園尾浦站入口與尾浦海岸步道旁。<br>
@@ -1358,14 +1390,14 @@
             </div>
         </section>
 
-        <!-- 住宿與待辦 -->
         <section id="todo" class="card" onclick="toggleDetails(this)" style="cursor:pointer;">
             <h2 class="section-title">🏨 住宿資訊</h2>
             <div class="hotel-info">
                 <p><b>名稱：</b> 海雲台溫德姆華美達安可飯店 (Ramada Encore by Wyndham Haeundae)</p>
                 <p><b>特色：</b> 地理位置極佳，樓下即為捷運站，享受兩個人的美好假期。</p>
             </div>
-            <span class="toggle-btn">🚆 查看地鐵站、出口與交通建議</span>
+            <span class="toggle-btn">🚆 查看地點與交通指引</span>
+            <a class="naver-map-btn" href="https://map.naver.com/v5/search/라마다앙코르 바이 제이더블유 해운대" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
             <div class="expand-details">
                 <div class="info-pill">
                     <b>🚆 地鐵站：</b>釜山地鐵 2 號線 海雲台站（203）<br>
@@ -1388,7 +1420,6 @@
     </div>
 
     <script>
-        // 切換 Day 頁籤
         function switchDay(dayNum) {
             const tabs = document.querySelectorAll('.day-tab');
             const contents = document.querySelectorAll('.day-content');
@@ -1411,7 +1442,6 @@
             }
         }
 
-        // 點擊展開/收合交通細節
         function toggleDetails(cardElement) {
             const details = cardElement.querySelector('.expand-details');
             if (details) {
@@ -1427,7 +1457,6 @@
             }
         }
 
-        // 倒數計時功能 (目標日期：2027/07/06)
         function updateCountdown() {
             const targetDate = new Date('2027-07-06T00:00:00');
             const now = new Date();
