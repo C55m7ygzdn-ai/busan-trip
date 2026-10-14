@@ -53,7 +53,6 @@
                         const diary1 = document.getElementById(`diary-${i}-1`);
                         const diary2 = document.getElementById(`diary-${i}-2`);
                         
-                        // 僅在使用者未聚焦輸入時自動更新，避免打字打到一半被覆蓋
                         if (diary1 && document.activeElement !== diary1) {
                             diary1.value = data[`day_${i}`].user1 || '';
                         }
@@ -339,7 +338,7 @@
 
         .timeline-item {
             position: relative;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .timeline-item::before {
@@ -361,19 +360,25 @@
             margin-bottom: 2px;
         }
 
+        /* 可折疊點擊卡片樣式 */
         .activity-card {
             background-color: var(--bg-color);
             border: 2px solid var(--line-color);
             border-radius: 16px;
             padding: 12px 14px;
             box-shadow: 2px 2px 0px var(--line-color);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-1px);
         }
 
         .activity-title-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 4px;
         }
 
         .activity-name {
@@ -387,19 +392,64 @@
             border-radius: 10px;
             border: 1.5px solid var(--line-color);
             font-weight: bold;
+            white-space: nowrap;
         }
         .tag-must { background-color: var(--coral); color: #fff; }
         .tag-transport { background-color: var(--blue); }
         .tag-food { background-color: var(--yellow); }
+        .tag-rec { background-color: #E8D5C4; }
 
-        .activity-desc {
+        .activity-desc-short {
             font-size: 0.88rem;
             color: #555;
+            margin-top: 4px;
+        }
+
+        /* 隱藏/展開內容面板 */
+        .toggle-btn {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #3B719F;
+            background: #EAF4F9;
+            padding: 3px 8px;
+            border-radius: 8px;
+            border: 1px solid var(--line-color);
+        }
+
+        .expand-details {
+            display: none;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1.5px dashed var(--line-color);
+            font-size: 0.85rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .expand-details.show {
+            display: block;
+            animation: fadeIn 0.25s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .info-pill {
+            background: #FFF;
+            border: 1.5px solid var(--line-color);
+            border-radius: 8px;
+            padding: 6px 10px;
+            margin-top: 6px;
+            font-size: 0.83rem;
         }
 
         /* 每日小日記區塊樣式 */
         .diary-section {
-            margin-top: 15px;
+            margin-top: 20px;
             background: #FFF9F0;
             border: 2px solid var(--line-color);
             border-radius: 16px;
@@ -508,6 +558,7 @@
                 <li><a href="#home">首頁</a></li>
                 <li><a href="#flights">航班</a></li>
                 <li><a href="#itinerary">行程</a></li>
+                <li><a href="#recommend">網友推薦</a></li>
                 <li><a href="#todo">準備</a></li>
             </ul>
         </nav>
@@ -554,7 +605,7 @@
 
         <!-- 每日行程 -->
         <section id="itinerary" class="card">
-            <h2 class="section-title">🗓️ 9日快樂行程</h2>
+            <h2 class="section-title">🗓️ 9日精緻行程</h2>
 
             <div class="day-tabs">
                 <button class="day-tab active" onclick="switchDay(1)">Day 1</button>
@@ -570,36 +621,23 @@
 
             <!-- Day 1 -->
             <div id="day-1" class="day-content active">
-                <div class="day-header-desc">✨ Day 1 主題：初見釜山，入住飯店聽海浪聲入眠</div>
+                <div class="day-header-desc">✨ Day 1 主題：搭機抵達釜山 ➔ 入住海雲台飯店</div>
                 <div class="timeline">
                     <div class="timeline-item">
-                        <div class="time">下午</div>
-                        <div class="activity-card">
+                        <div class="time">下午/傍晚</div>
+                        <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
-                                <span class="activity-name">抵達金海機場</span>
-                                <span class="tag tag-transport">巴士</span>
+                                <span class="activity-name">搭飛機 ➔ 前往住宿（海雲台）</span>
+                                <span class="tag tag-transport">交通</span>
                             </div>
-                            <div class="activity-desc">順利入境，搭乘直達海雲台的豪華巴士。</div>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="time">傍晚</div>
-                        <div class="activity-card">
-                            <div class="activity-title-row">
-                                <span class="activity-name">入住飯店：海雲台拉梅爾</span>
-                                <span class="tag tag-must">必去</span>
+                            <div class="activity-desc-short">抵達金海機場後前往海雲台拉梅爾飯店。</div>
+                            <span class="toggle-btn">🚆 查看地鐵/交通出口指引</span>
+                            <div class="expand-details">
+                                <div class="info-pill">
+                                    <b>🚆 地鐵站：</b>海雲台站（2號線 203）<br>
+                                    <b>💡 建議出口：</b>3 號或 5 號出口（往海雲台海水浴場方向，設有電梯與手扶梯，拉行李最方便！）。
+                                </div>
                             </div>
-                            <div class="activity-desc">Check-in 稍作休息，準備展開美好的釜山假期。</div>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="time">晚餐</div>
-                        <div class="activity-card">
-                            <div class="activity-title-row">
-                                <span class="activity-name">元祖密陽豬肉湯飯</span>
-                                <span class="tag tag-food">美食</span>
-                            </div>
-                            <div class="activity-desc">熱呼呼的濃郁大骨湯，暖胃又療癒的釜山第一餐。</div>
                         </div>
                     </div>
                 </div>
@@ -621,56 +659,77 @@
 
             <!-- Day 2 -->
             <div id="day-2" class="day-content">
-                <div class="day-header-desc">✨ Day 2 主題：松島纜車、南浦洞美食與鑽石號奢華遊艇晚宴</div>
+                <div class="day-header-desc">✨ Day 2 主題：松島纜車、南浦洞美食、鑽石遊艇與嚴湧帛湯飯</div>
                 <div class="timeline">
                     <div class="timeline-item">
-                        <div class="time">上午</div>
-                        <div class="activity-card">
+                        <div class="time">早上</div>
+                        <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
-                                <span class="activity-name">松島海上纜車 ＋ 松島龍宮雲橋</span>
-                                <span class="tag tag-must">必去</span>
-                            </div>
-                            <div class="activity-desc">Songdo Bay Station 乘車，憑 PASS 免費搭乘纜車與進入龍宮吊橋，俯瞰海景。</div>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="time">午餐</div>
-                        <div class="activity-card">
-                            <div class="activity-title-row">
-                                <span class="activity-name">Lee Jae Mo Pizza (李在模披薩 本店)</span>
+                                <span class="activity-name">自然醒 ➔ 李在模披薩（總店）</span>
                                 <span class="tag tag-food">美食</span>
                             </div>
-                            <div class="activity-desc">南浦洞附近超高人氣排隊美食！品嚐濃郁牽絲的招牌起司披薩。</div>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="time">下午</div>
-                        <div class="activity-card">
-                            <div class="activity-title-row">
-                                <span class="activity-name">南浦洞 & BIFF 廣場散步逛街</span>
-                                <span class="tag tag-transport">逛街</span>
+                            <div class="activity-desc-short">南浦洞超人氣美食，品嚐濃郁招牌起司披薩。</div>
+                            <span class="toggle-btn">🚇 查看地鐵/交通指引</span>
+                            <div class="expand-details">
+                                <div class="info-pill">
+                                    <b>🚇 地鐵站：</b><br>
+                                    • 中央站（1號線 112）1 號出口步行約 5 分鐘。<br>
+                                    • 南浦站（1號線 111）1 號或 7 號出口步行約 8 分鐘。
+                                </div>
                             </div>
-                            <div class="activity-desc">熱鬧商圈漫步，吃黑糖餅小吃，感受釜山熱情的街頭氛圍。</div>
                         </div>
                     </div>
+
                     <div class="timeline-item">
-                        <div class="time">18:00 左右</div>
-                        <div class="activity-card">
+                        <div class="time">中午/下午</div>
+                        <div class="activity-card" onclick="toggleDetails(this)">
+                            <div class="activity-title-row">
+                                <span class="activity-name">Songdo Cable Car ＋ 龍宮雲橋</span>
+                                <span class="tag tag-must">必去</span>
+                            </div>
+                            <div class="activity-desc-short">Songdo Bay Station 搭乘海上纜車與走訪龍宮吊橋。</div>
+                            <span class="toggle-btn">🚠 查看纜車/交通指引</span>
+                            <div class="expand-details">
+                                <div class="info-pill">
+                                    <b>🚠 交通方式：</b>地鐵 札嘎其站（1號線 110）1 號或 2 號出口出站，轉搭公車（7、26、30、71 路）或搭計程車（約 10 分鐘）前往松島海水浴場。<br>
+                                    <b>🎫 PASS 優惠：</b>憑 PASS 免費搭乘纜車與進入龍宮雲橋。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">18:30</div>
+                        <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
                                 <span class="activity-name">Diamond Bay Yacht Cruise (鑽石遊艇)</span>
-                                <span class="tag tag-must">必去</span>
+                                <span class="tag tag-must">奢華體驗</span>
                             </div>
-                            <div class="activity-desc">傍晚至夜間出海乘風破浪，遠眺夕陽與浪漫的大橋燈光秀。</div>
+                            <div class="activity-desc-short">龍湖洞碼頭出海，欣賞釜山絕美夕陽與夜景。</div>
+                            <span class="toggle-btn">⛵ 查看碼頭交通與時間提醒</span>
+                            <div class="expand-details">
+                                <div class="info-pill">
+                                    <b>⛵ 地鐵/轉乘：</b>慶星大·釜慶大站（2號線 212）3 號或 5 號出口，轉搭計程車（10-15 分鐘）或綠色小巴（南區 2 路）至「LG Metro City」下車。<br>
+                                    <b>⏰ 車程提醒：</b>松島至遊艇碼頭約 20-30 分鐘車程，建議最晚 <b>17:30</b> 從松島出發報到！
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                     <div class="timeline-item">
                         <div class="time">晚餐</div>
-                        <div class="activity-card">
+                        <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
-                                <span class="activity-name">廣安里海景晚餐</span>
+                                <span class="activity-name">嚴湧帛豬肉湯飯 (엄용백돼지국밥)</span>
                                 <span class="tag tag-food">美食</span>
                             </div>
-                            <div class="activity-desc">下船後在廣安里海灘旁享用精緻晚餐，享受海風吹拂。</div>
+                            <div class="activity-desc-short">遊艇結束後享用清爽濃郁的人氣米其林級豬肉湯飯。</div>
+                            <span class="toggle-btn">🍲 查看交通地點</span>
+                            <div class="expand-details">
+                                <div class="info-pill">
+                                    <b>📍 地點：</b>水營本店（鄰近水營站/水營區一帶）或海雲台分店，下船後搭計程車前往非常方便！
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -691,46 +750,77 @@
 
             <!-- Day 3 -->
             <div id="day-3" class="day-content">
-                <div class="day-header-desc">✨ Day 3 主題： Running Man 闖關、海邊列車夕陽與高空夜景</div>
+                <div class="day-header-desc">✨ Day 3 主題：天空膠囊、DIART 咖啡、海鮮麵與樂天冒險世界</div>
                 <div class="timeline">
                     <div class="timeline-item">
-                        <div class="time">早上</div>
-                        <div class="activity-card">
+                        <div class="time">上午</div>
+                        <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
-                                <span class="activity-name">睡到自然醒 & 享用早餐</span>
-                                <span class="tag tag-transport">放鬆</span>
-                            </div>
-                            <div class="activity-desc">補足睡眠，輕鬆享受慢活早晨。</div>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="time">13:00</div>
-                        <div class="activity-card">
-                            <div class="activity-title-row">
-                                <span class="activity-name">Running Man 釜山體驗館</span>
+                                <span class="activity-name">自然醒 ➔ 天空膠囊列車（尾浦站）</span>
                                 <span class="tag tag-must">必去</span>
                             </div>
-                            <div class="activity-desc">挑戰各種體能與智力關卡，熱血運動闖關！</div>
+                            <div class="activity-desc-short">彩色高空膠囊列車，搭乘至青沙浦與松亭。</div>
+                            <span class="toggle-btn">🚃 查看地鐵/交通指引</span>
+                            <div class="expand-details">
+                                <div class="info-pill">
+                                    <b>🚃 藍線公園尾浦站：</b><br>
+                                    • 地鐵 海雲台站（2號線 203）3 或 5 號出口步行約 15 分鐘。<br>
+                                    • 地鐵 中洞站（2號線 202）7 號出口步行約 10 分鐘。
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                     <div class="timeline-item">
-                        <div class="time">17:00</div>
-                        <div class="activity-card">
+                        <div class="time">中午</div>
+                        <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
-                                <span class="activity-name">海雲台藍線公園 海岸列車 (Beach Train)</span>
-                                <span class="tag tag-must">必去</span>
+                                <span class="activity-name">DIART coffee ➔ 海岸列車至天空步道</span>
+                                <span class="tag tag-food">咖啡</span>
                             </div>
-                            <div class="activity-desc">返回海雲台一帶搭乘海岸列車，沿著海岸線追尋絕美夕陽。</div>
+                            <div class="activity-desc-short">品嚐高質感精品手沖咖啡，銜接海岸列車景色。</div>
+                            <span class="toggle-btn">☕ 查看地點細節</span>
+                            <div class="expand-details">
+                                <div class="info-pill">
+                                    <b>☕ 地點：</b>青沙浦海景咖啡街附近，搭乘海岸列車順遊極其方便。
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                     <div class="timeline-item">
-                        <div class="time">19:50</div>
-                        <div class="activity-card">
+                        <div class="time">午餐</div>
+                        <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
-                                <span class="activity-name">Busan X the SKY 觀景台</span>
-                                <span class="tag tag-must">夜景</span>
+                                <span class="activity-name">海雲台 31cm 海鮮刀削麵</span>
+                                <span class="tag tag-food">美食</span>
                             </div>
-                            <div class="activity-desc">登上 100 樓俯瞰海雲台璀璨夜景與全景海岸線。</div>
+                            <div class="activity-desc-short">用比臉還大的大碗盛裝鋪滿新鮮貝類爆量海鮮麵！</div>
+                            <span class="toggle-btn">🍜 查看地鐵/分店分佈</span>
+                            <div class="expand-details">
+                                <div class="info-pill">
+                                    <b>🍜 地點指引：</b><br>
+                                    • <b>松亭站店：</b>從海岸列車終點松亭站步行約 8-10 分鐘。<br>
+                                    • <b>海雲台市場直營店：</b>地鐵 海雲台站（2號線 203）1 或 3 號出口步行 5 分鐘。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">下午/晚上</div>
+                        <div class="activity-card" onclick="toggleDetails(this)">
+                            <div class="activity-title-row">
+                                <span class="activity-name">Lotte World Adventure ＋ 樂天 Mall/超市</span>
+                                <span class="tag tag-must">樂園購物</span>
+                            </div>
+                            <div class="activity-desc-short">暢玩主題樂園，晚上在樂天 Outlet/超市採買伴手禮。</div>
+                            <span class="toggle-btn">🏰 查看地鐵出口指引</span>
+                            <div class="expand-details">
+                                <div class="info-pill">
+                                    <b>🏰 地鐵站：</b>東海線 奧西利亞站 (Osiria) 1 號出口步行約 10 分鐘（亦可直接搭計程車直達樂園門口）。
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -751,26 +841,76 @@
 
             <!-- Day 4 -->
             <div id="day-4" class="day-content">
-                <div class="day-header-desc">✨ Day 4 主題：樂天主題樂園歡樂冒險與廣安里頂樓海景咖啡</div>
+                <div class="day-header-desc">✨ Day 4 主題：觀光巴士換票、釜山塔、影島白險灘與甘川洞文化村</div>
                 <div class="timeline">
                     <div class="timeline-item">
-                        <div class="time">10:00</div>
-                        <div class="activity-card">
+                        <div class="time">上午</div>
+                        <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
-                                <span class="activity-name">釜山樂天世界 ＋ 樂天 Outlet</span>
-                                <span class="tag tag-must">必去</span>
+                                <span class="activity-name">自然醒 ➔ 釜山站換觀光巴士票</span>
+                                <span class="tag tag-transport">觀光巴士</span>
                             </div>
-                            <div class="activity-desc">體驗童話城堡與刺激遊樂設施，順道在 Outlet 採買購物。</div>
+                            <div class="activity-desc-short">憑 PASS 兌換 1 日券觀光巴士，開啟省力悠遊模式！</div>
+                            <span class="toggle-btn">🚌 查看換票處出口指引</span>
+                            <div class="expand-details">
+                                <div class="info-pill">
+                                    <b>🚌 地鐵站：</b>地鐵 釜山站（1號線 113）6 號或 8 號出口。<br>
+                                    <b>💡 櫃檯位置：</b>觀光巴士諮詢中心位於 KTX 釜山站 2 樓。
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                     <div class="timeline-item">
-                        <div class="time">下午 / 18:00</div>
-                        <div class="activity-card">
+                        <div class="time">上午/中午</div>
+                        <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
-                                <span class="activity-name">Guess Who Cafe181 (게스후 카페181)</span>
-                                <span class="tag tag-food">美食/海景</span>
+                                <span class="activity-name">釜山塔 Diamond Tower</span>
+                                <span class="tag tag-must">地標</span>
                             </div>
-                            <div class="activity-desc">廣安里海邊路 181 號 15 樓頂樓露台海景咖啡廳 ☕ 邊喝咖啡邊欣賞廣安大橋夜景。<br>📍 <b>鄰近地鐵：</b> 2號線金蓮山站 3號出口（步行約8分鐘）/ 廣安站（步行約15分鐘）</div>
+                            <div class="activity-desc-short">登上龍頭山公園地標高空塔，俯瞰釜山港口景色。</div>
+                            <span class="toggle-btn">🗼 查看地鐵/手扶梯指引</span>
+                            <div class="expand-details">
+                                <div class="info-pill">
+                                    <b>🗼 地鐵站：</b>地鐵 南浦站（1號線 111）1 號或 3 號出口，經光復路商圈搭乘手扶梯直達龍頭山公園。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">下午</div>
+                        <div class="activity-card" onclick="toggleDetails(this)">
+                            <div class="activity-title-row">
+                                <span class="activity-name">影島白險灘文化村 (Hinnyeoul)</span>
+                                <span class="tag tag-must">必去</span>
+                            </div>
+                            <div class="activity-desc-short">沿海懸崖散步道，尋找海景咖啡廳坐坐。</div>
+                            <span class="toggle-btn">🌊 查看 PASS 換票與交通</span>
+                            <div class="expand-details">
+                                <div class="info-pill">
+                                    <b>🚌 交通方式：</b>南浦洞搭公車或觀光巴士綠線過橋即達。<br>
+                                    <b>🎫 PASS 優惠：</b>憑 PASS 可免費兌換指定咖啡廳飲料或消費折抵。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">傍晚</div>
+                        <div class="activity-card" onclick="toggleDetails(this)">
+                            <div class="activity-title-row">
+                                <span class="activity-name">甘川洞文化村 (Hanbok Experience)</span>
+                                <span class="tag tag-must">童話彩色村</span>
+                            </div>
+                            <div class="activity-desc-short">階梯式彩色積木小屋與小王子拍照，體驗韓服穿搭。</div>
+                            <span class="toggle-btn">👘 查看 PASS 韓服與交通</span>
+                            <div class="expand-details">
+                                <div class="info-pill">
+                                    <b>🚕 交通方式：</b>南浦洞/札嘎其搭計程車或觀光巴士橘線前往。<br>
+                                    <b>👘 PASS 優惠：</b>持 PASS 可免費體驗韓服租借。
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -789,7 +929,7 @@
                 </div>
             </div>
 
-            <!-- Day 5 -->
+            <!-- Day 5 ~ Day 9 保留 -->
             <div id="day-5" class="day-content">
                 <div class="day-header-desc">✨ Day 5 主題：鬆散咖啡日，田浦咖啡街悠閒時光</div>
                 <div class="timeline">
@@ -800,26 +940,18 @@
                                 <span class="activity-name">田浦咖啡街 (Jeonpo Cafe Street)</span>
                                 <span class="tag tag-must">必去</span>
                             </div>
-                            <div class="activity-desc">沒有既定行程，隨性挑一間充滿設計感的獨立烘豆坊。</div>
+                            <div class="activity-desc-short">隨性挑選設計感獨立烘豆坊享受咖啡。</div>
                         </div>
                     </div>
                 </div>
-
                 <div class="diary-section">
                     <div class="diary-title">📖 小呆毛每日手札 (Day 5)</div>
-                    <div class="diary-box">
-                        <label>✍️ 小呆毛 1 號的日記：</label>
-                        <textarea id="diary-5-1" placeholder="寫下今天的心情或發生的小趣事..."></textarea>
-                    </div>
-                    <div class="diary-box">
-                        <label>✍️ 小呆毛 2 號的日記：</label>
-                        <textarea id="diary-5-2" placeholder="寫下今天的心情或發生的小趣事..."></textarea>
-                    </div>
+                    <div class="diary-box"><label>✍️ 小呆毛 1 號的日記：</label><textarea id="diary-5-1"></textarea></div>
+                    <div class="diary-box"><label>✍️ 小呆毛 2 號的日記：</label><textarea id="diary-5-2"></textarea></div>
                     <button class="save-diary-btn" onclick="saveDiary(5)">儲存日記 💾</button>
                 </div>
             </div>
 
-            <!-- Day 6 -->
             <div id="day-6" class="day-content">
                 <div class="day-header-desc">✨ Day 6 主題：廣安里海水浴場與浪漫鑽石大橋夜景</div>
                 <div class="timeline">
@@ -827,29 +959,21 @@
                         <div class="time">15:00</div>
                         <div class="activity-card">
                             <div class="activity-title-row">
-                                <span class="activity-name">廣安里沙灘散步與特色選物店</span>
+                                <span class="activity-name">廣安里沙灘散步與選物店</span>
                                 <span class="tag tag-transport">散步</span>
                             </div>
-                            <div class="activity-desc">逛逛沙灘旁的質感文創小店，挑選紀念明信片。</div>
+                            <div class="activity-desc-short">逛逛質感文創選物店與欣賞廣安大橋。</div>
                         </div>
                     </div>
                 </div>
-
                 <div class="diary-section">
                     <div class="diary-title">📖 小呆毛每日手札 (Day 6)</div>
-                    <div class="diary-box">
-                        <label>✍️ 小呆毛 1 號的日記：</label>
-                        <textarea id="diary-6-1" placeholder="寫下今天的心情或發生的小趣事..."></textarea>
-                    </div>
-                    <div class="diary-box">
-                        <label>✍️ 小呆毛 2 號的日記：</label>
-                        <textarea id="diary-6-2" placeholder="寫下今天的心情或發生的小趣事..."></textarea>
-                    </div>
+                    <div class="diary-box"><label>✍️ 小呆毛 1 號的日記：</label><textarea id="diary-6-1"></textarea></div>
+                    <div class="diary-box"><label>✍️ 小呆毛 2 號的日記：</label><textarea id="diary-6-2"></textarea></div>
                     <button class="save-diary-btn" onclick="saveDiary(6)">儲存日記 💾</button>
                 </div>
             </div>
 
-            <!-- Day 7 -->
             <div id="day-7" class="day-content">
                 <div class="day-header-desc">✨ Day 7 主題：慢步釜山傳統市場與最後採買</div>
                 <div class="timeline">
@@ -860,28 +984,20 @@
                                 <span class="activity-name">海雲台傳統市場</span>
                                 <span class="tag tag-food">在地</span>
                             </div>
-                            <div class="activity-desc">感受在地日常煙火氣，吃現蒸包子與盲鰻小吃。</div>
+                            <div class="activity-desc-short">吃現蒸包子與盲鰻在地小吃。</div>
                         </div>
                     </div>
                 </div>
-
                 <div class="diary-section">
                     <div class="diary-title">📖 小呆毛每日手札 (Day 7)</div>
-                    <div class="diary-box">
-                        <label>✍️ 小呆毛 1 號的日記：</label>
-                        <textarea id="diary-7-1" placeholder="寫下今天的心情或發生的小趣事..."></textarea>
-                    </div>
-                    <div class="diary-box">
-                        <label>✍️ 小呆毛 2 號的日記：</label>
-                        <textarea id="diary-7-2" placeholder="寫下今天的心情或發生的小趣事..."></textarea>
-                    </div>
+                    <div class="diary-box"><label>✍️ 小呆毛 1 號的日記：</label><textarea id="diary-7-1"></textarea></div>
+                    <div class="diary-box"><label>✍️ 小呆毛 2 號的日記：</label><textarea id="diary-7-2"></textarea></div>
                     <button class="save-diary-btn" onclick="saveDiary(7)">儲存日記 💾</button>
                 </div>
             </div>
 
-            <!-- Day 8 -->
             <div id="day-8" class="day-content">
-                <div class="day-header-desc">✨ Day 8 主題：還沒想好</div>
+                <div class="day-header-desc">✨ Day 8 主題：自由探索慢活日</div>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="time">早上</div>
@@ -890,26 +1006,18 @@
                                 <span class="activity-name">自由探索或放鬆發呆日</span>
                                 <span class="tag tag-must">隨性</span>
                             </div>
-                            <div class="activity-desc">享受沒有鬧鐘的早晨，隨心所欲散步。</div>
+                            <div class="activity-desc-short">享受沒有鬧鐘的早晨，隨心所欲。</div>
                         </div>
                     </div>
                 </div>
-
                 <div class="diary-section">
                     <div class="diary-title">📖 小呆毛每日手札 (Day 8)</div>
-                    <div class="diary-box">
-                        <label>✍️ 小呆毛 1 號的日記：</label>
-                        <textarea id="diary-8-1" placeholder="寫下今天的心情或發生的小趣事..."></textarea>
-                    </div>
-                    <div class="diary-box">
-                        <label>✍️ 小呆毛 2 號的日記：</label>
-                        <textarea id="diary-8-2" placeholder="寫下今天的心情或發生的小趣事..."></textarea>
-                    </div>
+                    <div class="diary-box"><label>✍️ 小呆毛 1 號的日記：</label><textarea id="diary-8-1"></textarea></div>
+                    <div class="diary-box"><label>✍️ 小呆毛 2 號的日記：</label><textarea id="diary-8-2"></textarea></div>
                     <button class="save-diary-btn" onclick="saveDiary(8)">儲存日記 💾</button>
                 </div>
             </div>
 
-            <!-- Day 9 -->
             <div id="day-9" class="day-content">
                 <div class="day-header-desc">✨ Day 9 主題：帶著滿滿回憶賦歸</div>
                 <div class="timeline">
@@ -920,22 +1028,52 @@
                                 <span class="activity-name">退房並前往金海機場</span>
                                 <span class="tag tag-transport">交通</span>
                             </div>
-                            <div class="activity-desc">不想回家，但還是得準備搭機返回溫暖的家。</div>
+                            <div class="activity-desc-short">搭機返回溫暖的家。</div>
                         </div>
                     </div>
                 </div>
-
                 <div class="diary-section">
                     <div class="diary-title">📖 小呆毛每日手札 (Day 9)</div>
-                    <div class="diary-box">
-                        <label>✍️ 小呆毛 1 號的日記：</label>
-                        <textarea id="diary-9-1" placeholder="寫下今天的心情或發生的小趣事..."></textarea>
-                    </div>
-                    <div class="diary-box">
-                        <label>✍️ 小呆毛 2 號的日記：</label>
-                        <textarea id="diary-9-2" placeholder="寫下今天的心情或發生的小趣事..."></textarea>
-                    </div>
+                    <div class="diary-box"><label>✍️ 小呆毛 1 號的日記：</label><textarea id="diary-9-1"></textarea></div>
+                    <div class="diary-box"><label>✍️ 小呆毛 2 號的日記：</label><textarea id="diary-9-2"></textarea></div>
                     <button class="save-diary-btn" onclick="saveDiary(9)">儲存日記 💾</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 網友與朋友推薦區卡片 -->
+        <section id="recommend" class="card">
+            <h2 class="section-title">🥐 網友/朋友超強推薦區</h2>
+            <p style="font-size:0.85rem; color:#666; margin-bottom:12px;">（點擊卡片展開查看地鐵與必買特色）</p>
+
+            <div class="activity-card" style="margin-bottom:12px;" onclick="toggleDetails(this)">
+                <div class="activity-title-row">
+                    <span class="activity-name">1. 自然島鹽麵包 (자연도소금빵)</span>
+                    <span class="tag tag-rec">超人氣</span>
+                </div>
+                <div class="activity-desc-short">嚴選法國 AOP 認證奶油製作，香氣濃郁的排隊鹽麵包！</div>
+                <span class="toggle-btn">🥐 查看地點與交通指引</span>
+                <div class="expand-details">
+                    <div class="info-pill">
+                        <b>📍 位置：</b>藍線公園尾浦站入口旁。<br>
+                        <b>💡 特色：</b>外酥內軟、奶油香極致爆發，剛出爐熱熱吃超療癒！
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-card" onclick="toggleDetails(this)">
+                <div class="activity-title-row">
+                    <span class="activity-name">2. BUSAN BADA SAND (부산바다샌드)</span>
+                    <span class="tag tag-rec">熱門伴手禮</span>
+                </div>
+                <div class="activity-desc-short">主打蜂蜜焦糖奶油夾心餅乾，釜山最近最紅的伴手禮！</div>
+                <span class="toggle-btn">🍯 查看地鐵出口指引</span>
+                <div class="expand-details">
+                    <div class="info-pill">
+                        <b>📍 位置：</b>海雲台綠洲巷（佑洞）。<br>
+                        <b>🚇 地鐵站：</b>海雲台站（2號線 203）2 號或 4 號出口步行 5 分鐘。<br>
+                        <b>💡 特色：</b>濃郁鮮奶油搭配手工蜂蜜焦糖內餡，甜而不膩。
+                    </div>
                 </div>
             </div>
         </section>
@@ -963,6 +1101,7 @@
     </div>
 
     <script>
+        // 切換 Day 頁籤
         function switchDay(dayNum) {
             const tabs = document.querySelectorAll('.day-tab');
             const contents = document.querySelectorAll('.day-content');
@@ -982,6 +1121,14 @@
             const activeContent = document.getElementById(`day-${dayNum}`);
             if (activeContent) {
                 activeContent.classList.add('active');
+            }
+        }
+
+        // 點擊展開/收合交通細節
+        function toggleDetails(cardElement) {
+            const details = cardElement.querySelector('.expand-details');
+            if (details) {
+                details.classList.toggle('show');
             }
         }
 
