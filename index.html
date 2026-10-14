@@ -88,13 +88,15 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            word-break: keep-all; /* 防止單字或詞彙被拆在奇怪的地方 */
+            overflow-wrap: break-word;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--line-color);
             font-family: 'Huninn', 'Noto Sans TC', sans-serif;
-            line-height: 1.8;
+            line-height: 1.7;
             padding-bottom: 60px;
         }
 
@@ -143,20 +145,20 @@
             background-color: var(--yellow);
         }
 
-        /* 主容器 */
+        /* 主容器：針對手機螢幕做寬度優化 */
         .container {
             max-width: 600px;
             margin: 75px auto 20px auto;
-            padding: 0 15px;
+            padding: 0 12px;
         }
 
         /* 通用卡片樣式 */
         .card {
             background-color: var(--card-bg);
             border: 3px solid var(--line-color);
-            border-radius: 24px;
-            padding: 20px;
-            margin-bottom: 20px;
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 18px;
             box-shadow: 4px 4px 0px var(--line-color);
         }
 
@@ -169,12 +171,12 @@
         }
 
         .hero h1 {
-            font-size: 1.7rem;
+            font-size: 1.6rem;
             margin-bottom: 5px;
         }
 
         .hero p {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             margin-bottom: 15px;
         }
 
@@ -185,7 +187,7 @@
             padding: 6px 16px;
             border-radius: 16px;
             font-weight: bold;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         /* 純圖片頭像動畫與排版（無外圓框） */
@@ -205,13 +207,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
+            gap: 16px;
             margin: 10px 0 15px 0;
         }
 
         .avatar-img-box {
-            width: 100px;
-            height: 100px;
+            width: 90px;
+            height: 90px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -233,7 +235,7 @@
         }
 
         .heart-icon {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             animation: pulse 1.8s ease-in-out infinite;
         }
 
@@ -243,30 +245,30 @@
         }
 
         h2.section-title {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         /* 航班卡片 */
         .flight-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 10px;
         }
 
         .flight-item {
             background: var(--bg-color);
             border: 2px solid var(--line-color);
-            border-radius: 16px;
-            padding: 12px;
-            font-size: 0.9rem;
+            border-radius: 14px;
+            padding: 10px;
+            font-size: 0.85rem;
         }
 
         .flight-item h3 {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             margin-bottom: 4px;
             color: #4A7A96;
         }
@@ -277,7 +279,7 @@
             gap: 6px;
             overflow-x: auto;
             padding-bottom: 8px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             scrollbar-width: none;
         }
         .day-tabs::-webkit-scrollbar {
@@ -287,11 +289,11 @@
         .day-tab {
             background-color: var(--bg-color);
             border: 2px solid var(--line-color);
-            border-radius: 14px;
-            padding: 8px 14px;
+            border-radius: 12px;
+            padding: 6px 12px;
             font-family: inherit;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             cursor: pointer;
             white-space: nowrap;
             transition: all 0.2s ease;
@@ -321,30 +323,31 @@
         .day-header-desc {
             background: var(--green);
             border: 2px solid var(--line-color);
-            border-radius: 14px;
-            padding: 10px 14px;
-            margin-bottom: 15px;
-            font-size: 0.9rem;
+            border-radius: 12px;
+            padding: 8px 12px;
+            margin-bottom: 14px;
+            font-size: 0.88rem;
             font-weight: bold;
+            line-height: 1.5;
         }
 
         /* 時間軸 */
         .timeline {
             position: relative;
-            padding-left: 20px;
+            padding-left: 16px;
             border-left: 3px dashed var(--line-color);
-            margin-left: 10px;
+            margin-left: 8px;
         }
 
         .timeline-item {
             position: relative;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
 
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -26.5px;
+            left: -22.5px;
             top: 6px;
             width: 10px;
             height: 10px;
@@ -354,18 +357,18 @@
         }
 
         .time {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: bold;
             color: #666;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
 
-        /* 可折疊點擊卡片樣式 */
+        /* 可折疊點擊卡片樣式 - 手機版彈性換行與間距優化 */
         .activity-card {
             background-color: var(--bg-color);
             border: 2px solid var(--line-color);
-            border-radius: 16px;
-            padding: 12px 14px;
+            border-radius: 14px;
+            padding: 10px 12px;
             box-shadow: 2px 2px 0px var(--line-color);
             cursor: pointer;
             transition: all 0.2s ease;
@@ -378,21 +381,27 @@
         .activity-title-row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
+            gap: 8px;
+            flex-wrap: wrap; /* 手機版自動彈性換行 */
         }
 
         .activity-name {
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            flex: 1;
+            min-width: 160px;
         }
 
         .tag {
-            font-size: 0.75rem;
-            padding: 2px 8px;
-            border-radius: 10px;
+            font-size: 0.72rem;
+            padding: 2px 6px;
+            border-radius: 8px;
             border: 1.5px solid var(--line-color);
             font-weight: bold;
             white-space: nowrap;
+            align-self: flex-start;
         }
         .tag-must { background-color: var(--coral); color: #fff; }
         .tag-transport { background-color: var(--blue); }
@@ -400,16 +409,17 @@
         .tag-rec { background-color: #E8D5C4; }
 
         .activity-desc-short {
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             color: #555;
             margin-top: 4px;
+            line-height: 1.4;
         }
 
         /* 隱藏/展開內容面板 */
         .toggle-btn {
             display: inline-block;
             margin-top: 6px;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: bold;
             color: #3B719F;
             background: #EAF4F9;
@@ -420,10 +430,10 @@
 
         .expand-details {
             display: none;
-            margin-top: 10px;
-            padding-top: 10px;
+            margin-top: 8px;
+            padding-top: 8px;
             border-top: 1.5px dashed var(--line-color);
-            font-size: 0.85rem;
+            font-size: 0.83rem;
             color: #333;
             line-height: 1.6;
         }
@@ -444,47 +454,47 @@
             border-radius: 8px;
             padding: 6px 10px;
             margin-top: 6px;
-            font-size: 0.83rem;
+            font-size: 0.82rem;
         }
 
         /* 每日小日記區塊樣式 */
         .diary-section {
-            margin-top: 20px;
+            margin-top: 16px;
             background: #FFF9F0;
             border: 2px solid var(--line-color);
-            border-radius: 16px;
-            padding: 14px;
+            border-radius: 14px;
+            padding: 12px;
         }
 
         .diary-title {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 6px;
         }
 
         .diary-box {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .diary-box label {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: bold;
             color: #555;
             display: block;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
 
         .diary-box textarea {
             width: 100%;
-            height: 60px;
+            height: 55px;
             border: 2px solid var(--line-color);
-            border-radius: 10px;
-            padding: 8px;
+            border-radius: 8px;
+            padding: 6px;
             font-family: inherit;
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             background: #FFFFFF;
             resize: none;
         }
@@ -492,11 +502,11 @@
         .save-diary-btn {
             background-color: var(--yellow);
             border: 2px solid var(--line-color);
-            border-radius: 10px;
-            padding: 4px 12px;
+            border-radius: 8px;
+            padding: 4px 10px;
             font-family: inherit;
             font-weight: bold;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             cursor: pointer;
             box-shadow: 2px 2px 0px var(--line-color);
             transition: all 0.1s;
@@ -514,18 +524,18 @@
         .todo-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 0.88rem;
             background: var(--bg-color);
             border: 2px solid var(--line-color);
-            padding: 8px 12px;
-            border-radius: 12px;
+            padding: 8px 10px;
+            border-radius: 10px;
         }
 
         .todo-item input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             accent-color: var(--coral);
             cursor: pointer;
         }
@@ -536,8 +546,8 @@
         }
 
         .hotel-info p {
-            font-size: 0.9rem;
-            margin-bottom: 6px;
+            font-size: 0.88rem;
+            margin-bottom: 4px;
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -592,13 +602,13 @@
                     <h3>去程</h3>
                     <p><b>2027 / 07 / 06 (二)</b></p>
                     <p>時間待定</p>
-                    <p style="font-size:0.8rem; color:#666;">台北 (TPE) 至 釜山 (PUS)</p>
+                    <p style="font-size:0.78rem; color:#666;">台北 (TPE) 至 釜山 (PUS)</p>
                 </div>
                 <div class="flight-item">
                     <h3>回程</h3>
                     <p><b>2027 / 07 / 14 (三)</b></p>
                     <p>時間待定</p>
-                    <p style="font-size:0.8rem; color:#666;">釜山 (PUS) 至 台北 (TPE)</p>
+                    <p style="font-size:0.78rem; color:#666;">釜山 (PUS) 至 台北 (TPE)</p>
                 </div>
             </div>
         </section>
@@ -627,16 +637,16 @@
                         <div class="time">行程</div>
                         <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
-                                <span class="activity-name">搭飛機 海雲台飯店 Check-in 海雲台夜間漫步</span>
+                                <span class="activity-name">搭飛機 海雲台溫德姆華美達安可飯店 Check-in 海雲台夜間漫步</span>
                                 <span class="tag tag-transport">住宿/交通</span>
                             </div>
-                            <div class="activity-desc-short">抵達金海國際機場，前往海雲台飯店登記入住並晚間散步。</div>
-                            <span class="toggle-btn">🚆 查看地鐵/交通出口指引</span>
+                            <div class="activity-desc-short">抵達金海國際機場，前往飯店辦理入住並前往海雲台海水浴場晚間散步。</div>
+                            <span class="toggle-btn">🚆 查看飯店與交通指引</span>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🏨 住宿：</b>海雲台拉梅爾飯店<br>
-                                    <b>🚆 地鐵站：</b>地鐵 海雲台站（2號線 203）<br>
-                                    <b>💡 建議出口：</b>3 號或 5 號出口（往海雲台海水浴場方向，設有電梯與手扶梯，拉行李最方便！）。
+                                    <b>🏨 飯店：</b>海雲台溫德姆華美達安可飯店 (Ramada Encore by Wyndham Haeundae)<br>
+                                    <b>🚆 地鐵站：</b>地鐵 海雲台站（2號線 203）<b>3 號出口</b> 直達飯店大門！<br>
+                                    <b>💡 交通優勢：</b>設有手扶梯與電梯，拉行李最方便輕鬆！
                                 </div>
                             </div>
                         </div>
@@ -659,7 +669,7 @@
                         <div class="time">行程 1</div>
                         <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
-                                <span class="activity-name">南浦洞早午餐</span>
+                                <span class="activity-name">南浦洞質感早午餐</span>
                                 <span class="tag tag-food">早午餐</span>
                             </div>
                             <div class="activity-desc-short">南浦洞商圈隨選一間順眼的質感咖啡廳享用美味早午餐。</div>
@@ -700,7 +710,7 @@
                             <span class="toggle-btn">🚕 查看交通指引</span>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚕 交通方式：</b>從松島搭計程車返回南浦洞。
+                                    <b>🚕 交通方式：</b>從松島搭計程車返回南浦洞（約 10 分鐘）。
                                 </div>
                             </div>
                         </div>
@@ -714,11 +724,11 @@
                                 <span class="tag tag-must">需預約</span>
                             </div>
                             <div class="activity-desc-short">龍湖洞碼頭出海，欣賞絕美夕陽與廣安大橋夜景。</div>
-                            <span class="toggle-btn">⛵ 查看碼頭交通與預約提醒</span>
+                            <span class="toggle-btn">⛵ 查看碼頭交通與提醒</span>
                             <div class="expand-details">
                                 <div class="info-pill">
                                     <b>🚕 交通方式：</b>從南浦洞搭計程車（約 20-30 分鐘，留意傍晚尖峰塞車）至龍湖洞碼頭。<br>
-                                    <b>⏰ 時間提醒：</b>建議最晚提前辦理報到！
+                                    <b>⏰ 時間提醒：</b>建議提前報到！
                                 </div>
                             </div>
                         </div>
@@ -736,7 +746,7 @@
                             <div class="expand-details">
                                 <div class="info-pill">
                                     <b>🚇 地鐵站：</b>搭地鐵至 水營站（2號線 208）1 號出口步行 5 分鐘。<br>
-                                    <b>💡 返回飯店：</b>吃飽後直接搭 2 號線直達海雲台站。
+                                    <b>💡 返回飯店：</b>吃飽後直接搭 2 號線直達海雲台站 3 號出口。
                                 </div>
                             </div>
                         </div>
@@ -756,17 +766,17 @@
                 <div class="day-header-desc">✨ Day 3：尾浦海鹽麵包 天空膠囊 青沙浦 DIART coffee 海岸列車 30cm海鮮麵 樂天世界/超市</div>
                 <div class="timeline">
                     <div class="timeline-item">
-                        <div class="time">行程 1</div>
+                        <div class="time">行程 1（11:00 出門）</div>
                         <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
                                 <span class="activity-name">自然島鹽麵包 (자연도소금빵)</span>
-                                <span class="tag tag-food">早午餐</span>
+                                <span class="tag tag-food">美味點心</span>
                             </div>
                             <div class="activity-desc-short">現烤法國 AOP 奶油海鹽麵包香氣濃郁！</div>
-                            <span class="toggle-btn">🥐 查看地鐵與步行指引</span>
+                            <span class="toggle-btn">🥐 查看步行指引</span>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚇 地鐵站：</b>地鐵 海雲台站（2號線 203）3 號/5 號出口步行約 15 分鐘至尾浦站入口旁，買現烤海鹽奶油麵包果腹。
+                                    <b>🚶 步行：</b>海雲台站 3 號出口出發，步行約 15 分鐘至藍線公園尾浦站入口旁購買現烤海鹽奶油麵包。
                                 </div>
                             </div>
                         </div>
@@ -800,7 +810,7 @@
                             <span class="toggle-btn">☕ 查看步行位置</span>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚶 步行：</b>膠囊列車青沙浦站下車後，步行 2 分鐘即達海景第一排咖啡廳。
+                                    <b>🚶 步行：</b>膠囊列車青沙浦站下車後，步行 2 分鐘即達。
                                 </div>
                             </div>
                         </div>
@@ -869,20 +879,20 @@
 
             <!-- Day 4 -->
             <div id="day-4" class="day-content">
-                <div class="day-header-desc">✨ Day 4：EGG DROP 釜山站換觀光巴士票 釜山塔 影島白險灘 甘川洞文化村</div>
+                <div class="day-header-desc">✨ Day 4：釜山站換觀光巴士票 ARTE Museum Miffy Cafe Busan 影島區一日遊</div>
                 <div class="timeline">
                     <div class="timeline-item">
-                        <div class="time">行程 1</div>
+                        <div class="time">行程 1（11:00 出門）</div>
                         <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
-                                <span class="activity-name">EGG DROP（南浦/釜山站分店）</span>
-                                <span class="tag tag-food">早午餐</span>
+                                <span class="activity-name">釜山站（兌換觀光巴士 1 日券）</span>
+                                <span class="tag tag-transport">換票</span>
                             </div>
-                            <div class="activity-desc-short">享用超香濃招牌厚吐司與滑蛋！</div>
-                            <span class="toggle-btn">🥪 查看地鐵指引</span>
+                            <div class="activity-desc-short">前往釜山站，憑 PASS 免費兌換觀光巴士 1 日券開啟省力探索！</div>
+                            <span class="toggle-btn">🚌 查看換票處出口</span>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚇 地鐵站：</b>地鐵 南浦站 或 釜山站 附近的 EGG DROP 享用招牌滑蛋吐司。
+                                    <b>🚌 地鐵站：</b>地鐵 釜山站（1號線 113）6 號或 8 號出口（KTX 釜山站 2 樓觀光巴士櫃檯）。
                                 </div>
                             </div>
                         </div>
@@ -892,14 +902,14 @@
                         <div class="time">行程 2</div>
                         <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
-                                <span class="activity-name">釜山站（兌換觀光巴士 1 日券）</span>
-                                <span class="tag tag-transport">換票</span>
+                                <span class="activity-name">ARTE Museum Busan (釜山沉浸式光影藝術館)</span>
+                                <span class="tag tag-must">必去</span>
                             </div>
-                            <div class="activity-desc-short">憑 PASS 免費兌換觀光巴士 1 日券開啟暢遊！</div>
-                            <span class="toggle-btn">🚌 查看換票處出口</span>
+                            <div class="activity-desc-short">影島區最新頂級沉浸式數位光影藝術展，超震撼視覺盛宴！</div>
+                            <span class="toggle-btn">🎨 查看交通</span>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚌 地鐵站：</b>地鐵 釜山站（1號線 113）6 號或 8 號出口（KTX 釜山站 2 樓）。
+                                    <b>🚕 交通：</b>從釜山站搭計程車（約 12-15 分鐘）過橋直達影島 ARTE Museum。
                                 </div>
                             </div>
                         </div>
@@ -909,14 +919,14 @@
                         <div class="time">行程 3</div>
                         <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
-                                <span class="activity-name">釜山塔 (Diamond Tower)</span>
-                                <span class="tag tag-must">地標</span>
+                                <span class="activity-name">Miffy Cafe Busan (미피카페 부산)</span>
+                                <span class="tag tag-food">主題咖啡</span>
                             </div>
-                            <div class="activity-desc-short">登上龍頭山公園地標俯瞰全景。</div>
-                            <span class="toggle-btn">🗼 查看地鐵/手扶梯指引</span>
+                            <div class="activity-desc-short">影島超可愛米飛兔主題咖啡廳，拍照與吃點心。</div>
+                            <span class="toggle-btn">🐰 查看地點</span>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🗼 地鐵站：</b>地鐵 南浦站（1號線 111）1 號或 3 號出口，經光復路商圈搭手扶梯直達。
+                                    <b>📍 位置：</b>影島區瓦馳路51번길 2，順遊 ARTE Museum 極為方便。
                                 </div>
                             </div>
                         </div>
@@ -926,31 +936,14 @@
                         <div class="time">行程 4</div>
                         <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
-                                <span class="activity-name">Having Moment（影島白險灘店）</span>
-                                <span class="tag tag-food">海景咖啡</span>
+                                <span class="activity-name">影島區景點（影島大橋 影島白險灘 太宗台）</span>
+                                <span class="tag tag-must">經典影島</span>
                             </div>
-                            <div class="activity-desc-short">影島白險灘步道旁透明全景海景咖啡廳。</div>
-                            <span class="toggle-btn">☕ 查看計程車交通</span>
+                            <div class="activity-desc-short">走訪影島大橋、懸崖步道白險灘文化村與太宗台壯麗海景。</div>
+                            <span class="toggle-btn">🌊 查看交通路線</span>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚕 交通方式：</b>從南浦洞搭計程車（約 8 分鐘）至影島白險灘步道旁的透明海景咖啡廳。
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="time">行程 5</div>
-                        <div class="activity-card" onclick="toggleDetails(this)">
-                            <div class="activity-title-row">
-                                <span class="activity-name">甘川洞文化村 (免費換韓服體驗)</span>
-                                <span class="tag tag-must">彩色村</span>
-                            </div>
-                            <div class="activity-desc-short">童話彩色小屋與小王子拍照，持 PASS 免費體驗韓服。</div>
-                            <span class="toggle-btn">🏡 查看計程車交通</span>
-                            <div class="expand-details">
-                                <div class="info-pill">
-                                    <b>🚕 交通方式：</b>從影島直接搭計程車前往（約 15 分鐘）。
+                                    <b>🚌/🚕 交通：</b>可全程搭乘觀光巴士路線串聯，或搭計程車於影島各景點間順遊。
                                 </div>
                             </div>
                         </div>
@@ -967,7 +960,7 @@
 
             <!-- Day 5 -->
             <div id="day-5" class="day-content">
-                <div class="day-header-desc">✨ Day 5：MOMOS COFFEE 金剛公園 東萊邑城史跡公園 福泉博物館 東萊蔥煎餅 釜山大學</div>
+                <div class="day-header-desc">✨ Day 5：MOMOS COFFEE 金剛公園 東萊邑城史跡公園 福泉博物館 東萊蔥煎餅 廣安里無人機秀</div>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="time">行程 1</div>
@@ -997,7 +990,7 @@
                             <span class="toggle-btn">🌲 查看步行路線</span>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚶 步行：</b>從 MOMOS 咖啡步行約 8-10 分鐘抵達。
+                                    <b>🚶 步行：</b>從 MOMOS COFFEE 咖啡廳步行約 8-10 分鐘抵達。
                                 </div>
                             </div>
                         </div>
@@ -1035,14 +1028,15 @@
                         <div class="time">行程 5</div>
                         <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
-                                <span class="activity-name">釜山大學商圈</span>
-                                <span class="tag tag-transport">逛街</span>
+                                <span class="activity-name">廣安里海水浴場 (欣賞絢麗無人機秀)</span>
+                                <span class="tag tag-must">免費夜秀</span>
                             </div>
-                            <div class="activity-desc-short">逛逛熱鬧學生街、個性選物小店與平價服飾。</div>
-                            <span class="toggle-btn">🛍️ 查看地鐵指引</span>
+                            <div class="activity-desc-short">前往廣安里沙灘，欣賞廣安大橋背景下的精彩夜間無人機燈光秀！</div>
+                            <span class="toggle-btn">🚁 查看地鐵與無人機演出提醒</span>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚇 地鐵站：</b>從東萊搭地鐵 1 號線往北 1 站至 釜山大學站（128）。
+                                    <b>🚇 地鐵站：</b>地鐵 廣安站（2號線 209）3 號或 5 號出口步行 10 分鐘到沙灘。<br>
+                                    <b>💡 演出時間：</b>每週六晚間定時演出（通常夏季為 20:00 與 22:00 各一場，每場約 10 分鐘），強烈推薦提前到沙灘卡位！
                                 </div>
                             </div>
                         </div>
@@ -1085,7 +1079,7 @@
                                 <span class="activity-name">Gwangalli Beach 廣安里沙灘散步</span>
                                 <span class="tag tag-must">海灘</span>
                             </div>
-                            <div class="activity-desc-short">沙灘散步看海，體驗廣安里悠閒海濱氛圍。</div>
+                            <div class="activity-desc-short">沙灘散步看海，體驗廣安里悠閒海濱氛圍與文創選物店。</div>
                             <span class="toggle-btn">🏖️ 查看地鐵出口</span>
                             <div class="expand-details">
                                 <div class="info-pill">
@@ -1102,7 +1096,7 @@
                                 <span class="activity-name">83獬豸烤肉 (83해치 廣安里店)</span>
                                 <span class="tag tag-food">美味烤肉</span>
                             </div>
-                            <div class="activity-desc-short">廣安里熱門烤肉，吃完在沙灘欣賞燦爛廣安大橋夜景。</div>
+                            <div class="activity-desc-short">廣安里超高評價人氣烤肉，吃完在沙灘欣賞燦爛廣安大橋夜景。</div>
                             <span class="toggle-btn">🥩 查看返回海雲台交通</span>
                             <div class="expand-details">
                                 <div class="info-pill">
@@ -1123,20 +1117,20 @@
 
             <!-- Day 7 -->
             <div id="day-7" class="day-content">
-                <div class="day-header-desc">✨ Day 7：Miffy Cafe Busan 釜田傳統市場 西面地下街</div>
+                <div class="day-header-desc">✨ Day 7：Working Holiday 早午餐 海雲台海灘/市場 晚餐味贊王鹽烤肉</div>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="time">行程 1</div>
                         <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
-                                <span class="activity-name">Miffy Cafe Busan (미피카페 부산)</span>
-                                <span class="tag tag-food">主題早午餐</span>
+                                <span class="activity-name">Working Holiday Brunch Cafe ＆ Bakery</span>
+                                <span class="tag tag-food">質感早午餐</span>
                             </div>
-                            <div class="activity-desc-short">影島超可愛米飛兔主題咖啡廳，早午餐與拍照。</div>
-                            <span class="toggle-btn">🐰 查看計程車交通</span>
+                            <div class="activity-desc-short">海理團路極具质感澳洲風格早午餐與烘焙麵包咖啡廳！</div>
+                            <span class="toggle-btn">☕ 查看地鐵/步行指引</span>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚕 交通：</b>位於影島（影島區瓦馳路51번길 2），建議從海雲台搭計程車直接前往。
+                                    <b>🚇 地鐵站：</b>地鐵 海雲台站（2號線 203）4 號出口步行 5 分鐘（海理團路）。
                                 </div>
                             </div>
                         </div>
@@ -1146,14 +1140,14 @@
                         <div class="time">行程 2</div>
                         <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
-                                <span class="activity-name">Bujeon Market 釜田傳統市場</span>
-                                <span class="tag tag-must">在地市集</span>
+                                <span class="activity-name">海雲台海灘 ＆ 海雲台傳統市場</span>
+                                <span class="tag tag-must">悠閒散步</span>
                             </div>
-                            <div class="activity-desc-short">體驗在地市集煙火氣與品嚐傳統美味小吃。</div>
-                            <span class="toggle-btn">🛒 查看地鐵出口</span>
+                            <div class="activity-desc-short">海灘聽浪散步，逛傳統市場體驗盲鰻與熱騰騰在地小吃。</div>
+                            <span class="toggle-btn">🌊 查看步行位置</span>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚇 地鐵站：</b>地鐵 釜田站（1號線 120）1 號出口。
+                                    <b>🚶 步行：</b>由海雲台站 3 號出口 straight 直行即達市場與沙灘。
                                 </div>
                             </div>
                         </div>
@@ -1163,14 +1157,14 @@
                         <div class="time">行程 3</div>
                         <div class="activity-card" onclick="toggleDetails(this)">
                             <div class="activity-title-row">
-                                <span class="activity-name">西面地下街 西面商圈</span>
-                                <span class="tag tag-transport">購物血拼</span>
+                                <span class="activity-name">味贊王鹽烤肉 (맛찬들왕소금구이 海雲台店)</span>
+                                <span class="tag tag-food">必吃美食</span>
                             </div>
-                            <div class="activity-desc-short">釜山最熱鬧核心購物區，盡情採買！</div>
-                            <span class="toggle-btn">🛍️ 查看地鐵交通</span>
+                            <div class="activity-desc-short">釜山第一厚切三層肉名店，專人代烤外酥內嫩多汁！</div>
+                            <span class="toggle-btn">🥩 查看地鐵/步行位置</span>
                             <div class="expand-details">
                                 <div class="info-pill">
-                                    <b>🚇 地鐵站：</b>從釜田步行或搭 1 站地鐵至 西面站（119/219）。
+                                    <b>🚇 地鐵站：</b>地鐵 海雲台站（2號線 203）5 號或 7 號出口步行 3 分鐘，就在飯店周邊！
                                 </div>
                             </div>
                         </div>
@@ -1187,7 +1181,7 @@
 
             <!-- Day 8 -->
             <div id="day-8" class="day-content">
-                <div class="day-header-desc">✨ Day 8：Liberta 釜山市民公園</div>
+                <div class="day-header-desc">✨ Day 8：Liberta 青沙浦海景咖啡 釜山市民公園 隨便晃晃</div>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="time">行程 1</div>
@@ -1220,6 +1214,17 @@
                                     <b>🚇 地鐵站：</b>搭地鐵至 初田站 或 市民公園站 附近。
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">行程 3</div>
+                        <div class="activity-card">
+                            <div class="activity-title-row">
+                                <span class="activity-name">市區隨便晃晃 慢活探索</span>
+                                <span class="tag tag-must">隨性</span>
+                            </div>
+                            <div class="activity-desc-short">沒有特定目的地，享受隨心所欲的城市慢活探索時光。</div>
                         </div>
                     </div>
                 </div>
@@ -1265,8 +1270,8 @@
                             <div class="expand-details">
                                 <div class="info-pill">
                                     <b>✈️ 機場交通：</b><br>
-                                    • <b>計程車：</b>從海雲台搭計程車（約 45 分鐘）直達機場。<br>
-                                    • <b>地鐵：</b>搭乘地鐵 2 號線至沙上站，轉乘輕軌直達金海機場。
+                                    • <b>計程車：</b>從飯店搭計程車（約 45 分鐘）直達機場。<br>
+                                    • <b>地鐵：</b>由飯店門口海雲台站 3 號出口搭乘地鐵 2 號線至沙上站，轉乘輕軌直達金海機場。
                                 </div>
                             </div>
                         </div>
@@ -1285,7 +1290,7 @@
         <!-- 網友與朋友推薦區卡片 -->
         <section id="recommend" class="card">
             <h2 class="section-title">🥐 網友/朋友超強推薦區</h2>
-            <p style="font-size:0.85rem; color:#666; margin-bottom:12px;">（點擊卡片展開查看地鐵與必買特色）</p>
+            <p style="font-size:0.82rem; color:#666; margin-bottom:12px;">（點擊卡片展開查看地鐵與必買特色）</p>
 
             <div class="activity-card" style="margin-bottom:12px;" onclick="toggleDetails(this)">
                 <div class="activity-title-row">
@@ -1344,7 +1349,7 @@
                 <div class="expand-details">
                     <div class="info-pill">
                         <b>📍 位置：</b>藍線公園尾浦站入口與尾浦海岸步道旁。<br>
-                        <b>🚇 地鐵站：</b>地鐵 海雲台站 3 或 5 號出口步行至尾浦入口。<br>
+                        <b>🚇 地鐵站：</b>地鐵 海雲台站 3 號出口直行至尾浦入口。<br>
                         <b>💡 特色：</b>現點現包，口味包含開心果、抹茶、海鹽焦糖等，放在小木盤上超吸睛！
                     </div>
                 </div>
@@ -1355,15 +1360,15 @@
         <section id="todo" class="card" onclick="toggleDetails(this)" style="cursor:pointer;">
             <h2 class="section-title">🏨 住宿資訊</h2>
             <div class="hotel-info">
-                <p><b>名稱：</b> 海雲台拉梅爾 (Haeundae Lamer Hotel / Stay)</p>
-                <p><b>特色：</b> 舒適放鬆，享受兩個人的美好假期。</p>
+                <p><b>名稱：</b> 海雲台溫德姆華美達安可飯店 (Ramada Encore by Wyndham Haeundae)</p>
+                <p><b>特色：</b> 地理位置極佳，樓下即為捷運站，享受兩個人的美好假期。</p>
             </div>
             <span class="toggle-btn">🚆 查看地鐵站、出口與交通建議</span>
             <div class="expand-details">
                 <div class="info-pill">
                     <b>🚆 地鐵站：</b>釜山地鐵 2 號線 海雲台站（203）<br>
-                    <b>💡 建議出口：</b>3 號出口，直走直行步行約 5-10 分鐘即達。<br>
-                    <b>🚌 機場交通：</b>可於金海機場搭乘直達海雲台的城際利木津巴士，於海雲台海水浴場/海雲台站周邊下車，拉行李非常方便！
+                    <b>💡 建議出口：</b><b>3 號出口</b> 直達飯店大門（設有電梯與手扶梯）。<br>
+                    <b>🚌 機場交通：</b>金海機場可搭乘利木津巴士直達海雲台站，或搭地鐵 2 號線轉乘輕軌。
                 </div>
             </div>
         </section>
