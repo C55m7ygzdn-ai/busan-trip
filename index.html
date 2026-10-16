@@ -44,7 +44,7 @@
         onValue(diaryRef, (snapshot) => {
             const data = snapshot.val();
             if (data) {
-                for (let i = 1; i <= 9; i++) {
+                for (let i = 1; i <= 10; i++) {
                     if (data[`day_${i}`]) {
                         const diary1 = document.getElementById(`diary-${i}-1`);
                         const diary2 = document.getElementById(`diary-${i}-2`);
