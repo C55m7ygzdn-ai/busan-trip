@@ -615,7 +615,7 @@
         </section>
 
         <section id="itinerary" class="card">
-            <h2 class="section-title">🗓️ 9日超爆快樂行程</h2>
+            <h2 class="section-title">🗓️ 10日超爆快樂行程</h2>
 
             <div class="day-tabs">
                 <button class="day-tab active" onclick="switchDay(1)">Day 1</button>
@@ -627,6 +627,7 @@
                 <button class="day-tab" onclick="switchDay(7)">Day 7</button>
                 <button class="day-tab" onclick="switchDay(8)">Day 8</button>
                 <button class="day-tab" onclick="switchDay(9)">Day 9</button>
+                <button class="day-tab" onclick="switchDay(9)">Day 10</button>
             </div>
 
             <!-- Day 1 -->
@@ -1267,7 +1268,49 @@
 
             <!-- Day 9 -->
             <div id="day-9" class="day-content">
-                <div class="day-header-desc">✨ Day 9：賦歸</div>
+                <div class="day-header-desc">✨ Day 9：海雲台早午餐 / 隨意行程</div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="time">行程 1</div>
+                        <div class="activity-card" onclick="toggleDetails(this)">
+                            <div class="activity-title-row">
+                                <span class="activity-name">海雲台早午餐</span>
+                                <span class="tag tag-food">早午餐</span>
+                            </div>
+                            <div class="activity-desc-short">在海雲台周邊享用美味早午餐。</div>
+                            <span class="toggle-btn">🚶 查看交通指引</span>
+                            <a class="naver-map-btn" href="https://map.naver.com/v5/search/해운대 브런치" target="_blank" onclick="event.stopPropagation()">🗺️ Naver Map 定位</a>
+                            <div class="expand-details">
+                                <div class="info-pill">
+                                    <b>🚶步行：</b>從飯店出發依照當天心情挑選店家
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="time">行程 2</div>
+                        <div class="activity-card">
+                            <div class="activity-title-row">
+                                <span class="activity-name">市區隨便晃晃 慢活探索</span>
+                                <span class="tag tag-must">隨性</span>
+                            </div>
+                            <div class="activity-desc-short">沒有特定目的地，享受隨心所欲的城市慢活探索時光。</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="diary-section">
+                    <div class="diary-title">📖 小呆毛每日手札 (Day 9)</div>
+                    <div class="diary-box"><label>✍️ 小呆毛 1 號的日記：</label><textarea id="diary-9-1" placeholder="寫下今天的心情或發生的小趣事..."></textarea></div>
+                    <div class="diary-box"><label>✍️ 小呆毛 2 號的日記：</label><textarea id="diary-9-2" placeholder="寫下今天的心情或發生的小趣事..."></textarea></div>
+                    <button class="save-diary-btn" onclick="saveDiary(8)">儲存日記 💾</button>
+                </div>
+            </div>
+            
+            <!-- Day 10 -->
+            <div id="day-10" class="day-content">
+                <div class="day-header-desc">✨ Day 10：賦歸</div>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="time">04:50</div>
@@ -1289,10 +1332,10 @@
                 </div>
 
                 <div class="diary-section">
-                    <div class="diary-title">📖 小呆毛每日手札 (Day 9)</div>
-                    <div class="diary-box"><label>✍️ 小呆毛 1 號的日記：</label><textarea id="diary-9-1" placeholder="寫下今天的心情或發生的小趣事..."></textarea></div>
-                    <div class="diary-box"><label>✍️ 小呆毛 2 號的日記：</label><textarea id="diary-9-2" placeholder="寫下今天的心情或發生的小趣事..."></textarea></div>
-                    <button class="save-diary-btn" onclick="saveDiary(9)">儲存日記 💾</button>
+                    <div class="diary-title">📖 小呆毛每日手札 (Day 10)</div>
+                    <div class="diary-box"><label>✍️ 小呆毛 1 號的日記：</label><textarea id="diary-10-1" placeholder="寫下今天的心情或發生的小趣事..."></textarea></div>
+                    <div class="diary-box"><label>✍️ 小呆毛 2 號的日記：</label><textarea id="diary-10-2" placeholder="寫下今天的心情或發生的小趣事..."></textarea></div>
+                    <button class="save-diary-btn" onclick="saveDiary(10)">儲存日記 💾</button>
                 </div>
             </div>
         </section>
