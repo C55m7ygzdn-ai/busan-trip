@@ -617,6 +617,9 @@
 </head>
 <body>
 
+    <!-- 🎵 背景音樂：完全隱藏，點擊網頁任意處自動發聲單曲循環 -->
+    <audio id="bgm" src="bgm.mp3" autoplay loop muted style="display:none;"></audio>
+
     <header>
         <div class="logo">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3D4852" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M12 2v20"></path></svg>
@@ -635,12 +638,6 @@
 
     <div class="container">
 
-        <!-- 🎵 新增功能 4：釜山 Chill 氛圍音樂播放器 -->
-        <div class="card" style="padding:10px; text-align:center; background:#FFF3E0;">
-            <div style="font-size:0.85rem; font-weight:bold; margin-bottom:6px;">🎵 釜山 Chill 旅途音樂頻道</div>
-            <iframe style="border-radius:12px; border:2px solid var(--line-color);" width="100%" height="80" src="https://youtube.com/playlist?list=PLEySLQdlmsSs&si=SOnzvORdRZnaVjZd&autoplay=1&mute=1" title="Busan Playlist" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
         <section id="home" class="card hero">
             <div class="avatar-container">
                 <div class="avatar-img-box left">
@@ -657,7 +654,7 @@
             <div class="countdown-box" id="countdown">計算倒數中... 🎒</div>
         </section>
 
-        <!-- 💱 新增功能 1：即時韓元匯率換算器 -->
+        <!-- 💱 即時韓元匯率換算器 -->
         <section class="card" style="background:#E3F2FD;">
             <h2 class="section-title">💱 韓元/台幣即時速算器</h2>
             <div class="converter-box">
@@ -1515,7 +1512,7 @@
             </div>
         </section>
 
-        <!-- 💳 新增功能 3：旅途公費與花費記帳區 -->
+        <!-- 💳 旅途公費與花費記帳區 -->
         <section class="card" style="background:#FFFDE7;">
             <h2 class="section-title">💳 旅途公費記帳與拆帳小工具</h2>
             <div style="display:flex; gap:6px; margin-bottom:10px;">
@@ -1560,7 +1557,7 @@
             </ul>
         </section>
 
-        <!-- 🛒 新增功能 5：釜山必買超市與美妝 Check-List -->
+        <!-- 🛒 釜山必買超市與美妝 Check-List -->
         <section class="card">
             <h2 class="section-title">🛒 釜山 Olive Young ＆ 超市必買清單</h2>
             <ul class="todo-list">
@@ -1709,6 +1706,15 @@
                 console.log("氣象載入使用預設氣候數值", error);
             }
         }
+
+        // 🎵 點擊頁面任意處解鎖自動播放音樂
+        window.addEventListener('click', () => {
+            const audio = document.getElementById('bgm');
+            if (audio) {
+                audio.muted = false;
+                audio.play().catch(err => console.log("音樂播放受阻:", err));
+            }
+        }, { once: true });
 
         window.addEventListener('load', () => {
             updateCountdown();
